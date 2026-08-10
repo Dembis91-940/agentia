@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit IA gratuit (30 min) — Agentia</title>
+<meta name="description" content="Réservez votre audit IA gratuit de 30 minutes : on identifie les 3 tâches qui vous coûtent le plus de temps et on chiffre les heures récupérables. Sans engagement.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="index.html">Agent<span>ia</span></a>
+    <button class="nav-toggle" data-nav-toggle aria-label="Ouvrir le menu">☰</button>
+    <nav class="nav-links" data-nav>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Offres &amp; tarifs</a>
+      <a href="processus.html">Processus</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn accent small" href="audit.html">Audit gratuit</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero small">
+  <div class="wrap">
+    <span class="kicker">🎁 Offre de lancement</span>
+    <h1>Audit IA gratuit — 30 minutes.</h1>
+    <p class="sub">On identifie les 3 tâches qui vous coûtent le plus de temps, on chiffre les heures récupérables, et on vous propose 3 automatisations concrètes. Sans engagement, quoi qu'il arrive.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split" style="align-items:start">
+      <div>
+        <div class="sec-head" style="text-align:left;margin:0 0 28px">
+          <span class="kicker">Réservez votre créneau</span>
+          <h2 style="font-size:26px">Ça prend 30 secondes.</h2>
+          <p class="lead" style="font-size:15.5px">Champs requis marqués d'un <span style="color:var(--danger)">*</span>. On confirme votre RDV par email sous 24 h.</p>
+        </div>
+
+        <div class="msg-box err" id="audit-errors"></div>
+        <div class="msg-box ok" id="audit-ok">
+          <p><b>✅ Votre demande est enregistrée !</b></p>
+          <p class="mt-1">Récapitulatif : <b id="audit-recap"></b></p>
+          <p>Référence : <span class="ref" id="audit-ref"></span></p>
+          <p class="mt-1">On vous confirme le créneau exact par email sous 24 h. En attendant, ajoutez l'audit à votre agenda :</p>
+          <p class="mt-1"><a class="btn accent small" id="audit-cal" href="#" target="_blank" rel="noopener">➕ Ajouter à mon agenda (Google Calendar)</a></p>
+          <p class="small muted mt-1">Lien de secours : <a id="audit-mailto" href="#">envoyer un email de confirmation</a></p>
+        </div>
+
+        <form class="form-card" id="form-audit" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="a-nom">Votre nom <span class="req">*</span></label>
+              <input type="text" id="a-nom" name="nom" autocomplete="name" placeholder="Prénom Nom">
+            </div>
+            <div class="field">
+              <label for="a-email">Email professionnel <span class="req">*</span></label>
+              <input type="email" id="a-email" name="email" autocomplete="email" placeholder="vous@entreprise.fr">
+            </div>
+            <div class="field">
+              <label for="a-tel">Téléphone <span class="req">*</span></label>
+              <input type="tel" id="a-tel" name="tel" autocomplete="tel" placeholder="06 12 34 56 78">
+            </div>
+            <div class="field">
+              <label for="a-entreprise">Entreprise <span class="req">*</span></label>
+              <input type="text" id="a-entreprise" name="entreprise" autocomplete="organization" placeholder="Nom de l'établissement">
+            </div>
+            <div class="field">
+              <label for="a-secteur">Secteur <span class="req">*</span></label>
+              <select id="a-secteur" name="secteur">
+                <option value="">— Choisir —</option>
+                <option>Restaurant / café</option>
+                <option>E-commerce</option>
+                <option>Profession libérale</option>
+                <option>Artisan</option>
+                <option>PME B2B</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="a-creneau">Créneau souhaité <span class="req">*</span></label>
+              <select id="a-creneau" name="creneau">
+                <option value="">— Choisir —</option>
+                <option>10h</option>
+                <option>11h</option>
+                <option>14h</option>
+                <option>15h</option>
+                <option>16h</option>
+                <option>17h</option>
+              </select>
+              <div class="hint">Créneau de démonstration (audit le lendemain). On confirme l'heure exacte par email.</div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="a-besoin">Quelle tâche vous fait perdre le plus de temps ? <span style="font-weight:400;color:var(--muted)">(optionnel)</span></label>
+            <textarea id="a-besoin" name="besoin" placeholder="Ex. : saisir les factures, relancer les réservations, répondre aux mêmes questions sur WhatsApp…"></textarea>
+          </div>
+          <div class="field">
+            <label class="check">
+              <input type="checkbox" id="a-consent" name="consent">
+              <span>J'accepte que mes données soient utilisées pour organiser cet audit et être recontacté (RGPD). Elles ne seront <b>jamais</b> revendues. <span class="req">*</span></span>
+            </label>
+          </div>
+          <button class="btn accent" type="submit" style="width:100%">Réserver mon audit gratuit</button>
+          <p class="small muted mt-2" style="text-align:center">Sans engagement. Vous repartez avec la liste d'opportunités, quoi qu'il arrive.</p>
+        </form>
+      </div>
+
+      <aside>
+        <div class="result-card mb-3">
+          <div class="kicker" style="margin-bottom:8px">Pendant l'audit</div>
+          <ul style="list-style:none">
+            <li style="padding:7px 0;font-size:14.5px;display:flex;gap:10px"><span style="color:var(--accent);font-weight:800">1.</span> On passe en revue vos tâches répétitives</li>
+            <li style="padding:7px 0;font-size:14.5px;display:flex;gap:10px"><span style="color:var(--accent);font-weight:800">2.</span> On chiffre les heures récupérables</li>
+            <li style="padding:7px 0;font-size:14.5px;display:flex;gap:10px"><span style="color:var(--accent);font-weight:800">3.</span> On propose 3 automatisations avec prix</li>
+          </ul>
+        </div>
+        <div class="result-card mb-3">
+          <div class="kicker" style="margin-bottom:8px">Vous repartez avec</div>
+          <div class="big" style="font-size:26px">3 idées concrètes</div>
+          <div class="lbl">chiffrées en heures et en euros — même si vous ne signez rien.</div>
+        </div>
+        <div class="result-card">
+          <div class="kicker" style="margin-bottom:8px">Combien ça vaut ?</div>
+          <label for="roi-side" style="font-size:13.5px;font-weight:600">Heures gagnées / semaine : <b data-roi-heures>5 h/sem</b></label>
+          <input type="range" id="roi-side" data-roi-slider min="1" max="20" step="1" value="5" data-cout-horaire="30">
+          <div class="roi-grid">
+            <div class="roi-cell"><div class="k">Valeur / mois</div><div class="v pos" data-roi-valeur>650 €/mois</div></div>
+            <div class="roi-cell"><div class="k">Gain net vs Concierge</div><div class="v pos" data-roi-gain>+50 €/mois</div></div>
+          </div>
+          <p class="small muted mt-1" data-roi-verdict>ROI positif dès le premier mois.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="pourquoi">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Pourquoi c'est gratuit ?</span>
+      <h2>Parce qu'on préfère prouver avant de vendre.</h2>
+      <p class="lead">L'audit est notre façon de démontrer la valeur avant tout engagement. Deux issues possibles, toutes les deux bonnes pour vous.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>On trouve des automatisations</h3>
+        <p>Vous recevez un devis clair, avec les heures gagnées chiffrées et la garantie 30 jours. Vous décidez en toute connaissance.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>On ne trouve rien d'utile</h3>
+        <p>On vous le dit franchement, on vous laisse la liste de ce qui pourrait être automatisé plus tard, et on ne vous relance pas.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Vous voulez d'abord écouter vos clients</h3>
+        <p>On vous oriente vers l'entretien client IA (990 €) : le rapport vous dira exactement quoi améliorer — et quoi automatiser ensuite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="kicker">Une question avant de réserver ?</span>
+    <h2>On répond sous 24 h.</h2>
+    <p><a href="contact.html">Contactez-nous</a> — ou réservez directement, c'est gratuit et sans engagement.</p>
+    <a class="btn accent" href="#form-audit">Réserver mon audit gratuit</a>
+    <p class="fine">Agentia · [Votre nom] · [ville] · RGPD : données jamais revendues.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div>
+      <div class="logo light">Agent<span>ia</span></div>
+      <p class="muted small mt-1">L'IA au travail dans votre entreprise. Restaurants, cafés, e-commerçants et PME — on installe, on mesure, on maintient.</p>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Offres &amp; tarifs</a>
+      <a href="processus.html">Processus</a>
+      <a href="audit.html">Audit gratuit</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:contact@agentia.fr">contact@agentia.fr</a>
+      <a href="audit.html">Réserver un audit</a>
+      <p class="small muted mt-1">RGPD : vos données restent chez vous. Jamais revendues.</p>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <span>© <span data-year>2026</span> Agentia — [Votre nom] · [ville]</span>
+    <span>Document interne : <a href="pieges.html" style="color:#7d887f">carte des 5 pièges</a></span>
+  </div>
+</footer>
+
+<script src="js/tarifs.js"></script>
+<script src="js/main.js"></script>
+<script src="js/audit.js"></script>
+</body>
+</html>

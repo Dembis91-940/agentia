@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Agentia | Réponse sous 24 h</title>
+<meta name="description" content="Contactez Agentia : audit IA gratuit, chatbot site web, automatisations, Concierge IA. Réponse sous 24 h.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="index.html">Agent<span>ia</span></a>
+    <button class="nav-toggle" data-nav-toggle aria-label="Ouvrir le menu">☰</button>
+    <nav class="nav-links" data-nav>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Offres &amp; tarifs</a>
+      <a href="processus.html">Processus</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn accent small" href="audit.html">Audit gratuit</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero small">
+  <div class="wrap">
+    <span class="kicker">Contact</span>
+    <h1>Parlons de votre entreprise.</h1>
+    <p class="sub">Une question sur les offres, un projet précis, ou juste envie de voir ce que l'IA peut faire chez vous : on répond sous 24 h.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split" style="align-items:start">
+      <div>
+        <div class="sec-head" style="text-align:left;margin:0 0 28px">
+          <span class="kicker">Écrivez-nous</span>
+          <h2 style="font-size:26px">Un message, c'est tout.</h2>
+        </div>
+
+        <div class="msg-box err" id="c-errors"></div>
+        <div class="msg-box ok" id="c-ok">
+          <p><b>✅ Message prêt à partir !</b></p>
+          <p class="mt-1">Votre client email vient de s'ouvrir avec le message pré-rempli. Pas de client email ? <a id="c-copy" href="#">copiez le texte</a> et écrivez-nous à contact@agentia.fr.</p>
+        </div>
+
+        <form class="form-card" id="form-contact" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="c-nom">Votre nom <span class="req">*</span></label>
+              <input type="text" id="c-nom" name="nom" autocomplete="name" placeholder="Prénom Nom">
+            </div>
+            <div class="field">
+              <label for="c-email">Email <span class="req">*</span></label>
+              <input type="email" id="c-email" name="email" autocomplete="email" placeholder="vous@entreprise.fr">
+            </div>
+          </div>
+          <div class="field">
+            <label for="c-sujet">Sujet</label>
+            <select id="c-sujet" name="sujet">
+              <option>Demande d'audit gratuit</option>
+              <option>Question sur une offre</option>
+              <option>Entretien client IA (990 €)</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="c-message">Votre message <span class="req">*</span></label>
+            <textarea id="c-message" name="message" placeholder="Dites-nous ce qui vous prend du temps, on vous dira si on peut l'automatiser."></textarea>
+          </div>
+          <div class="field">
+            <label class="check">
+              <input type="checkbox" id="c-consent">
+              <span>J'accepte que mes données soient utilisées pour traiter ma demande (RGPD). Jamais revendues. <span class="req">*</span></span>
+            </label>
+          </div>
+          <button class="btn accent" type="submit" style="width:100%">Envoyer le message</button>
+        </form>
+      </div>
+
+      <aside>
+        <div class="result-card mb-3">
+          <div class="kicker" style="margin-bottom:8px">Coordonnées</div>
+          <p style="font-size:15px"><b>Email :</b> <a href="mailto:contact@agentia.fr">contact@agentia.fr</a></p>
+          <p style="font-size:15px"><b>Réponse :</b> sous 24 h, jours ouvrés</p>
+          <p style="font-size:15px"><b>Zone :</b> [Ville] + visio partout en France</p>
+        </div>
+        <div class="result-card mb-3">
+          <div class="kicker" style="margin-bottom:8px">Le plus rapide</div>
+          <p style="font-size:14.5px;color:var(--muted)">Vous savez déjà ce que vous voulez ? Réservez directement l'audit gratuit — 30 minutes, sans engagement.</p>
+          <p class="mt-2"><a class="btn accent" href="audit.html">Réserver mon audit gratuit</a></p>
+        </div>
+        <div class="result-card">
+          <div class="kicker" style="margin-bottom:8px">Nos engagements</div>
+          <ul style="list-style:none">
+            <li style="padding:5px 0;font-size:14px;display:flex;gap:10px"><span style="color:var(--ok);font-weight:800">✓</span> Garantie 30 jours</li>
+            <li style="padding:5px 0;font-size:14px;display:flex;gap:10px"><span style="color:var(--ok);font-weight:800">✓</span> Données jamais revendues</li>
+            <li style="padding:5px 0;font-size:14px;display:flex;gap:10px"><span style="color:var(--ok);font-weight:800">✓</span> Formation équipe incluse</li>
+            <li style="padding:5px 0;font-size:14px;display:flex;gap:10px"><span style="color:var(--ok);font-weight:800">✓</span> Résultats mesurés avant / après</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div>
+      <div class="logo light">Agent<span>ia</span></div>
+      <p class="muted small mt-1">L'IA au travail dans votre entreprise. Restaurants, cafés, e-commerçants et PME — on installe, on mesure, on maintient.</p>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Offres &amp; tarifs</a>
+      <a href="processus.html">Processus</a>
+      <a href="audit.html">Audit gratuit</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:contact@agentia.fr">contact@agentia.fr</a>
+      <a href="audit.html">Réserver un audit</a>
+      <p class="small muted mt-1">RGPD : vos données restent chez vous. Jamais revendues.</p>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <span>© <span data-year>2026</span> Agentia — [Votre nom] · [ville]</span>
+    <span>Document interne : <a href="pieges.html" style="color:#7d887f">carte des 5 pièges</a></span>
+  </div>
+</footer>
+
+<script src="js/tarifs.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* Formulaire contact : validation + mailto pré-rempli + confirmation locale */
+(function () {
+  "use strict";
+  function init() {
+    var form = document.getElementById("form-contact");
+    if (!form) return;
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var nom = (document.getElementById("c-nom").value || "").trim();
+      var email = (document.getElementById("c-email").value || "").trim();
+      var sujet = (document.getElementById("c-sujet").value || "").trim();
+      var message = (document.getElementById("c-message").value || "").trim();
+      var consent = document.getElementById("c-consent").checked;
+      var errBox = document.getElementById("c-errors");
+      var okBox = document.getElementById("c-ok");
+      var errors = [];
+      if (nom.length < 2) errors.push("Votre nom est requis.");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) errors.push("Un email valide est requis.");
+      if (message.length < 10) errors.push("Un message d'au moins 10 caractères est requis.");
+      if (!consent) errors.push("Merci d'accepter le traitement de vos données (RGPD).");
+      if (errors.length) {
+        errBox.innerHTML = errors.map(function (e) { return "<p>⚠ " + e + "</p>"; }).join("");
+        errBox.className = "msg-box err show";
+        okBox.className = "msg-box ok";
+        return;
+      }
+      errBox.className = "msg-box err";
+      var corps = encodeURIComponent(message + "\n\n— " + nom + " (" + email + ")");
+      window.location.href = "mailto:contact@agentia.fr?subject=" + encodeURIComponent("Agentia — " + sujet) + "&body=" + corps;
+      okBox.className = "msg-box ok show";
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

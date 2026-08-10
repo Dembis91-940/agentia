@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sécurité incluse — Agentia | Checklist cyber minimale pour PME</title>
+<meta name="description" content="La sécurité est incluse dans chaque déploiement Agentia : double vérification (MFA), permissions limitées, validation humaine, sauvegardes et mots de passe gérés. Checklist cyber minimale pour PME.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Checklist imprimable */
+  .checklist{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px 28px}
+  .checklist ol{list-style:none;counter-reset:c;margin-top:6px}
+  .checklist li{counter-increment:c;display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:15px;border-bottom:1px dashed var(--line)}
+  .checklist li:last-child{border-bottom:none}
+  .checklist li::before{content:counter(c);flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:13.5px;display:flex;align-items:center;justify-content:center}
+  .checklist input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+  .print-bar{display:flex;justify-content:flex-end;margin-bottom:16px}
+  .sec-table td .price-cell{font-weight:800;color:var(--accent);white-space:nowrap}
+  @media print{
+    .site-header,.site-footer,.print-bar,.no-print{display:none!important}
+    section{padding:24px 0;page-break-inside:avoid}
+    .checklist{box-shadow:none}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="index.html">Agent<span>ia</span></a>
+    <button class="nav-toggle" data-nav-toggle aria-label="Ouvrir le menu">☰</button>
+    <nav class="nav-links" data-nav>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Offres &amp; tarifs</a>
+      <a href="processus.html">Processus</a>
+      <a href="securite.html">Sécurité</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn accent small" href="audit.html">Audit gratuit</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero small">
+  <div class="wrap">
+    <span class="kicker">Sécurité incluse · sans jargon</span>
+    <h1>Votre outil IA, livré <em>sécurisé</em>.</h1>
+    <p class="sub">Chaque déploiement Agentia embarque la checklist cyber minimale : double vérification, permissions limitées, validation humaine, sauvegardes. C'est inclus, ce n'est pas une option.</p>
+    <div class="hero-cta">
+      <a class="btn accent" href="#checklist">Voir la checklist</a>
+      <a class="btn ghost" href="audit.html">En parler pendant l'audit gratuit</a>
+    </div>
+  </div>
+</section>
+
+<section id="pourquoi" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Pourquoi c'est inclus</span>
+      <h2>Trois histoires vraies. Quatre parades.</h2>
+      <p class="lead">Les entreprises piratées ne le sont presque jamais par des génies : il manquait une petite habitude. Voici les trois leçons récentes qui ont construit notre checklist.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Le faux CAPTCHA</h3>
+        <p>Un faux « Je ne suis pas un robot » demande de coller une commande dans un terminal. Cette commande est un piège.</p>
+        <ul>
+          <li>Un humain valide les actions importantes</li>
+          <li>Jamais de « collez cette commande »</li>
+          <li>Les paiements sensibles passent par une approbation</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Le mot de passe volé</h3>
+        <p>Un seul identifiant volé, sans protection supplémentaire, a exposé des données clients de grandes entreprises.</p>
+        <ul>
+          <li>Double vérification (MFA) sur les comptes clés</li>
+          <li>Un mot de passe seul ne suffit plus</li>
+          <li>Coffre à mots de passe pour toute l'équipe</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>L'agent IA trop libre</h3>
+        <p>Un assistant IA aux permissions trop larges a agi sans que personne ne valide. Comme un employé sans cadre.</p>
+        <ul>
+          <li>Permissions au strict nécessaire</li>
+          <li>Périmètre de chaque IA écrit noir sur blanc</li>
+          <li>Validation humaine sur les actions sensibles</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="regles">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Les 4 règles d'or</span>
+      <h2>Le minimum vital, sans jargon.</h2>
+      <p class="lead">Deux heures de mise en place au total. La plupart des risques évités.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Règle</th><th>Ce que ça veut dire</th><th>Ce qu'on fait pour vous</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>1. Double vérification (MFA)</b></td>
+            <td>Mot de passe + code sur le téléphone. Un mot de passe volé ne suffit plus.</td>
+            <td>Activée sur tous les comptes créés ou touchés pendant le chantier (email pro, banque, outils clients).</td>
+          </tr>
+          <tr>
+            <td><b>2. Permissions limitées</b></td>
+            <td>Chaque personne et chaque outil n'a que ce dont il a besoin. Un compte compromis = dégâts limités.</td>
+            <td>Chaque automatisation reçoit exactement les accès nécessaires, listés dans un document remis au client.</td>
+          </tr>
+          <tr>
+            <td><b>3. Validation humaine</b></td>
+            <td>Ce qui coûte de l'argent ou touche des données clients est vérifié par un humain avant exécution.</td>
+            <td>Chaque workflow sensible (paiement, envoi en masse, suppression) inclut une étape d'approbation humaine.</td>
+          </tr>
+          <tr>
+            <td><b>4. Sauvegardes + mots de passe gérés</b></td>
+            <td>Fichiers copiés automatiquement, mots de passe dans un coffre. Une panne ne détruit pas l'entreprise.</td>
+            <td>Plan de sauvegarde + restauration testée, coffre mis en place si absent, connexion au coffre existant sinon.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="checklist" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Checklist cyber minimale</span>
+      <h2>À cocher avec votre interlocuteur Agentia.</h2>
+      <p class="lead">Imprimez-la, remplissez-la ensemble, gardez-la dans le classeur. La version remplie et signée est remise à la fin de chaque chantier.</p>
+    </div>
+    <div class="print-bar">
+      <button class="btn small" onclick="window.print()">🖨️ Imprimer / PDF</button>
+    </div>
+    <div class="checklist">
+      <ol>
+        <li><input type="checkbox"> Double vérification activée sur l'email professionnel</li>
+        <li><input type="checkbox"> Double vérification activée sur la banque et la comptabilité</li>
+        <li><input type="checkbox"> Tableau « qui a accès à quoi » rempli et à jour</li>
+        <li><input type="checkbox"> Accès des anciens employés et prestataires inactifs supprimés</li>
+        <li><input type="checkbox"> Un compte par personne — aucun compte partagé</li>
+        <li><input type="checkbox"> Paiements sensibles validés manuellement (seuil défini)</li>
+        <li><input type="checkbox"> Envois en masse validés manuellement avant envoi</li>
+        <li><input type="checkbox"> Sauvegarde automatique hebdomadaire sur 2 supports</li>
+        <li><input type="checkbox"> Test de restauration effectué cette année</li>
+        <li><input type="checkbox"> Coffre à mots de passe en place pour l'équipe</li>
+        <li><input type="checkbox"> Mots de passe différents partout</li>
+        <li><input type="checkbox"> Périmètre de chaque IA / automatisation écrit noir sur blanc</li>
+      </ol>
+    </div>
+    <p class="pricing-foot">Astuce : cochez les cases à l'écran, puis « Imprimer / PDF » — la version cochée part directement en PDF pour vos équipes.</p>
+  </div>
+</section>
+
+<section id="inclus">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Inclus dans chaque déploiement</span>
+      <h2>La sécurité n'est pas une option à part.</h2>
+      <p class="lead">Elle est dans le prix de chaque offre — et documentée, pas promis dans le vide.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="num">✓</div>
+        <h3>Checklist signée</h3>
+        <p>La checklist remplie, datée et signée est remise avec la livraison. Vous savez exactement ce qui a été fait.</p>
+      </div>
+      <div class="card">
+        <div class="num">✓</div>
+        <h3>MFA partout</h3>
+        <p>Double vérification sur tous les comptes créés ou touchés. C'est la parade n°1 contre le vol d'identifiants.</p>
+      </div>
+      <div class="card">
+        <div class="num">✓</div>
+        <h3>Humain dans la boucle</h3>
+        <p>Chaque action sensible a une étape d'approbation humaine. Une IA mal cadrée ne peut pas causer de dégâts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="kicker">Sans engagement</span>
+    <h2>Parlons-en pendant l'audit gratuit.</h2>
+    <p>30 minutes pour identifier vos 3 tâches à automatiser — et vérifier ensemble où en est votre sécurité de base.</p>
+    <a class="btn accent" href="audit.html">Réserver mon audit gratuit</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div>
+      <div class="logo light">Agent<span>ia</span></div>
+      <p class="muted small mt-1">L'IA au travail dans votre entreprise. Restaurants, cafés, e-commerçants et PME — on installe, on mesure, on maintient.</p>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Offres &amp; tarifs</a>
+      <a href="processus.html">Processus</a>
+      <a href="securite.html">Sécurité</a>
+      <a href="audit.html">Audit gratuit</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:contact@agentia.fr">contact@agentia.fr</a>
+      <a href="audit.html">Réserver un audit</a>
+      <p class="small muted mt-1">RGPD : vos données restent chez vous. Jamais revendues.</p>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <span>© <span data-year>2026</span> Agentia — [Votre nom] · [ville]</span>
+    <span>Document interne : <a href="pieges.html" style="color:#7d887f">carte des 5 pièges</a></span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
