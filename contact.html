@@ -136,7 +136,7 @@
 <script src="js/tarifs.js"></script>
 <script src="js/main.js"></script>
 <script>
-/* Formulaire contact : validation + mailto pré-rempli + confirmation locale */
+/* Formulaire contact : validation + envoi direct EmailJS + confirmation */
 (function () {
   "use strict";
   function init() {
@@ -163,9 +163,40 @@
         return;
       }
       errBox.className = "msg-box err";
-      var corps = encodeURIComponent(message + "\n\n— " + nom + " (" + email + ")");
-      window.location.href = "mailto:agentiadeploiement@gmail.com?subject=" + encodeURIComponent("Agentia — " + sujet) + "&body=" + corps;
-      okBox.className = "msg-box ok show";
+      /* Envoi direct via EmailJS (config partagée avec le chatbot) */
+      var cfg = window.CHATBOT_CONFIG || null;
+      var ej = cfg && cfg.emailjs;
+      var btn = form.querySelector("button[type=submit]");
+      if (!ej) {
+        errBox.innerHTML = "<p>⚠ Envoi indisponible pour le moment. Écrivez-nous directement à agentiadeploiement@gmail.com</p>";
+        errBox.className = "msg-box err show";
+        return;
+      }
+      if (btn) { btn.disabled = true; btn.textContent = "Envoi en cours…"; }
+      var question = "CONTACT — Sujet : " + (sujet || "—") + " — Message : " + message;
+      var n = 0;
+      var attempt = function () {
+        if (window.emailjs) {
+          emailjs.send(ej.serviceId, ej.templateId, {
+            name: nom, email: email, question: question, site: "Agentia"
+          }).then(function () {
+            if (btn) { btn.disabled = false; btn.textContent = "Envoyer le message"; }
+            okBox.className = "msg-box ok show";
+          }).catch(function () {
+            if (btn) { btn.disabled = false; btn.textContent = "Envoyer le message"; }
+            errBox.innerHTML = "<p>⚠ Échec de l'envoi. Réessayez ou écrivez à agentiadeploiement@gmail.com</p>";
+            errBox.className = "msg-box err show";
+          });
+        } else if (n < 12) {
+          n++;
+          setTimeout(attempt, 250);
+        } else {
+          if (btn) { btn.disabled = false; btn.textContent = "Envoyer le message"; }
+          errBox.innerHTML = "<p>⚠ Envoi indisponible pour le moment. Écrivez-nous à agentiadeploiement@gmail.com</p>";
+          errBox.className = "msg-box err show";
+        }
+      };
+      attempt();
     });
   }
   if (document.readyState === "loading") {
