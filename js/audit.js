@@ -72,6 +72,33 @@
     } catch (e) { return []; }
   }
 
+  /* Envoi du lead via EmailJS (config partagée avec le chatbot) */
+  function sendLead(data) {
+    var cfg = (typeof window !== "undefined" && window.CHATBOT_CONFIG) ? window.CHATBOT_CONFIG : null;
+    var ej = cfg && cfg.emailjs;
+    if (!ej) return;
+    var question = "AUDIT GRATUIT demandé — entreprise: " + (data.entreprise || "—") +
+      ", secteur: " + (data.secteur || "—") + ", créneau: " + (data.creneau || "—") +
+      ", besoin: " + (data.besoin || "—");
+    var n = 0;
+    var attempt = function () {
+      if (window.emailjs) {
+        try {
+          emailjs.send(ej.serviceId, ej.templateId, {
+            name: data.nom || "—",
+            email: data.email || "—",
+            question: question,
+            site: "Agentia"
+          }).catch(function () {});
+        } catch (e) {}
+      } else if (n < 12) {
+        n++;
+        setTimeout(attempt, 250);
+      }
+    };
+    attempt();
+  }
+
   /* Point d'entrée du formulaire. Retourne {ok, errors, id, calendarUrl, data} */
   function handleSubmit(event, doc, storage) {
     var d = doc || (typeof document !== "undefined" ? document : null);
@@ -103,6 +130,7 @@
     }
 
     var id = saveRdv(data, storage);
+    sendLead(data);
     var calUrl = buildCalendarUrl(data);
     if (errBox) { errBox.className = "msg-box err"; errBox.innerHTML = ""; }
 
