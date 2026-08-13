@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentia — L'IA au travail dans votre entreprise</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', system-ui, sans-serif; background:#05070d; color:#e8ecf5; overflow-x:hidden; }
+  #bg { position:fixed; inset:0; z-index:0; }
+  .content { position:relative; z-index:2; }
+
+  /* Hero */
+  .hero { position:relative; height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; perspective:1000px; }
+  .hero-inner { transform-style:preserve-3d; }
+  .layer { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; will-change:transform; }
+  .title { font-size:clamp(2.4rem, 7vw, 5.5rem); font-weight:800; letter-spacing:-0.02em;
+           background:linear-gradient(120deg,#5eead4,#38bdf8,#818cf8); -webkit-background-clip:text; background-clip:text; color:transparent;
+           text-shadow:0 0 40px rgba(56,189,248,.25); }
+  .subtitle { font-size:clamp(1rem, 2.2vw, 1.5rem); color:#9fb0c9; margin-top:1.2rem; font-weight:300; }
+  .cta { margin-top:2.5rem; display:inline-flex; gap:.8rem; flex-wrap:wrap; justify-content:center; }
+  .btn { padding:.9rem 2rem; border-radius:999px; font-weight:600; text-decoration:none; transition:transform .2s, box-shadow .2s; }
+  .btn-primary { background:linear-gradient(120deg,#0ea5e9,#6366f1); color:#fff; box-shadow:0 0 30px rgba(99,102,241,.4); }
+  .btn-ghost { border:1px solid rgba(255,255,255,.25); color:#dbe4f0; }
+  .btn:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 0 45px rgba(99,102,241,.65); }
+
+  /* Section démo */
+  .demo { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:4rem 6vw; }
+  .card { max-width:640px; background:rgba(13,18,32,.7); border:1px solid rgba(255,255,255,.09); border-radius:24px;
+          padding:2.5rem; backdrop-filter:blur(14px); transform-style:preserve-3d; will-change:transform; box-shadow:0 30px 80px rgba(0,0,0,.5); }
+  .card h2 { font-size:1.8rem; margin-bottom:1rem; background:linear-gradient(120deg,#a5f3fc,#818cf8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .card p { color:#aab8d0; line-height:1.7; }
+  .stats { display:flex; gap:2rem; margin-top:2rem; flex-wrap:wrap; }
+  .stat b { font-size:1.6rem; color:#7dd3fc; display:block; }
+  .stat span { color:#7c8aa5; font-size:.85rem; }
+
+  .scroll-hint { position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); color:#5b6b85; font-size:.8rem; letter-spacing:.25em; text-transform:uppercase; animation:float 2.4s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,-10px)} }
+
+  .nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center;
+         padding:1.2rem 2.5rem; background:linear-gradient(rgba(5,7,13,.85), transparent); }
+  .logo { font-weight:800; font-size:1.15rem; letter-spacing:.02em; }
+  .logo span { color:#38bdf8; }
+  .nav a { color:#aab8d0; text-decoration:none; margin-left:1.5rem; font-size:.9rem; }
+  .nav a:hover { color:#7dd3fc; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="logo">Agentia<span>.</span></div>
+  <div>
+    <a href="#demo">Ce qu'on fait</a>
+    <a href="https://dembis91-940.github.io/agentia/" target="_blank">Audit gratuit</a>
+  </div>
+</nav>
+
+<canvas id="bg"></canvas>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="layer" data-depth="0.45">
+      <div class="title" id="titre">L'IA au travail<br>dans votre entreprise</div>
+    </div>
+    <div class="layer" data-depth="0.55" style="top:58%">
+      <div class="subtitle">Pas dans un PowerPoint. Dans vos heures gagnées, chaque semaine.</div>
+    </div>
+    <div class="layer" data-depth="0.7" style="top:72%">
+      <div class="cta">
+        <a class="btn btn-primary" href="https://dembis91-940.github.io/agentia/">Audit gratuit 30 min →</a>
+        <a class="btn btn-ghost" href="#demo">Voir la démo</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Défilez</div>
+</section>
+
+<section class="demo" id="demo">
+  <div class="card" id="carte">
+    <h2>Un site qui vit avec vous</h2>
+    <p>Cette page est construite avec une vraie scène 3D WebGL : les particules réagissent à votre souris, les éléments flottent en profondeur et tout bouge en parallaxe — comme si vous traversiez un espace réel.</p>
+    <div class="stats">
+      <div class="stat"><b>5-10 h</b><span>gagnées / semaine</span></div>
+      <div class="stat"><b>300-600 €</b><span>/ mois ROI positif</span></div>
+      <div class="stat"><b>30 min</b><span>d'audit gratuit</span></div>
+    </div>
+  </div>
+</section>
+
+<script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+<script>
+/* ============ SCÈNE 3D WEBGL ============ */
+const canvas = document.getElementById('bg');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, .1, 100);
+camera.position.z = 8;
+
+/* Particules étoiles */
+const COUNT = 1800;
+const pos = new Float32Array(COUNT*3);
+const col = new Float32Array(COUNT*3);
+for (let i=0;i<COUNT;i++){
+  pos[i*3]   = (Math.random()-.5)*22;
+  pos[i*3+1] = (Math.random()-.5)*14;
+  pos[i*3+2] = (Math.random()-.5)*10 - 2;
+  const c = new THREE.Color().setHSL(.55 + Math.random()*.15, .8, .55 + Math.random()*.35);
+  col[i*3]=c.r; col[i*3+1]=c.g; col[i*3+2]=c.b;
+}
+const geo = new THREE.BufferGeometry();
+geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+geo.setAttribute('color', new THREE.BufferAttribute(col,3));
+const pts = new THREE.Points(geo, new THREE.PointsMaterial({ size:.035, vertexColors:true, transparent:true, opacity:.85 }));
+scene.add(pts);
+
+/* Objet 3D central : icosaèdre wireframe lumineux */
+const core = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(1.6, 1),
+  new THREE.MeshBasicMaterial({ color:0x38bdf8, wireframe:true, transparent:true, opacity:.28 })
+);
+scene.add(core);
+
+const core2 = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(2.2, 1),
+  new THREE.MeshBasicMaterial({ color:0x818cf8, wireframe:true, transparent:true, opacity:.10 })
+);
+scene.add(core2);
+
+/* Anneaux orbitaux */
+const ring = new THREE.Mesh(
+  new THREE.TorusGeometry(3.1, .008, 8, 90),
+  new THREE.MeshBasicMaterial({ color:0x5eead4, transparent:true, opacity:.35 })
+);
+scene.add(ring);
+
+const mouse = { x:0, y:0 };
+addEventListener('mousemove', e => {
+  mouse.x = (e.clientX/innerWidth -.5)*2;
+  mouse.y = (e.clientY/innerHeight -.5)*2;
+});
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+/* ============ PARALLAXE CSS 3D ============ */
+const layers = document.querySelectorAll('.layer');
+addEventListener('mousemove', e => {
+  const x = (e.clientX/innerWidth -.5)*2, y = (e.clientY/innerHeight -.5)*2;
+  layers.forEach(l => {
+    const d = parseFloat(l.dataset.depth);
+    l.style.transform = `translate3d(${x*22*d}px, ${y*16*d}px, 0)`;
+  });
+  core.rotation.y += .0008; core.rotation.x += .0003;
+  ring.rotation.z += .0005;
+});
+
+/* Scroll : profondeur + rotation */
+addEventListener('scroll', () => {
+  const t = scrollY/innerHeight;
+  camera.position.z = 8 - t*4;
+  core.rotation.y = t*Math.PI*2;
+});
+
+/* Carte 3D au survol */
+const carte = document.getElementById('carte');
+carte.addEventListener('mousemove', e => {
+  const r = carte.getBoundingClientRect();
+  const rx = (e.clientY - r.top)/r.height -.5, ry = (e.clientX - r.left)/r.width -.5;
+  carte.style.transform = `rotateX(${rx*-8}deg) rotateY(${ry*10}deg) translateZ(0)`;
+});
+carte.addEventListener('mouseleave', () => { carte.style.transform = 'rotateX(0) rotateY(0)'; });
+
+/* Boucle d'animation */
+(function animate(){
+  requestAnimationFrame(animate);
+  pts.rotation.y += .0006;
+  pts.rotation.x += .0002;
+  core.rotation.y += .0015;
+  core2.rotation.y -= .0008;
+  ring.rotation.x += .0012;
+  camera.position.x += (mouse.x*1.2 - camera.position.x)*.04;
+  camera.position.y += (-mouse.y*.9 - camera.position.y)*.04;
+  camera.lookAt(0,0,0);
+  renderer.render(scene, camera);
+})();
+</script>
+</body>
+</html>
