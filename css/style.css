@@ -367,9 +367,14 @@ input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:point
   section{padding:0}
   .piege{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
   .print-title{margin-bottom:16px}
+  .reveal{opacity:1 !important;transform:none !important}
 }
 
+/* ---------- Animations au scroll (reveal) ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;will-change:opacity,transform}
+.reveal.visible{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{transition:none !important;animation:none !important}
+  .reveal{opacity:1;transform:none}
 }
