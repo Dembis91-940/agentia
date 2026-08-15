@@ -313,6 +313,7 @@ td .price-cell{font-weight:800;color:var(--accent);white-space:nowrap}
   background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
   padding:26px 24px;box-shadow:var(--shadow);
 }
+.result-card .kicker{display:block;margin-bottom:10px}
 .result-card .big{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--accent)}
 .result-card .lbl{font-size:13.5px;color:var(--muted);margin:4px 0 14px}
 .roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}

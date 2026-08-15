@@ -12,14 +12,14 @@
   .content { position:relative; z-index:2; }
 
   /* Hero */
-  .hero { position:relative; height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; perspective:1000px; }
-  .hero-inner { transform-style:preserve-3d; }
-  .layer { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; will-change:transform; }
-  .title { font-size:clamp(2.4rem, 7vw, 5.5rem); font-weight:800; letter-spacing:-0.02em;
+  .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; perspective:1000px; padding:6rem 1.5rem 4rem; }
+  .hero-inner { transform-style:preserve-3d; width:min(900px, 100%); }
+  .layer { margin:1.6rem 0; display:flex; flex-direction:column; align-items:center; justify-content:center; will-change:transform; }
+  .title { font-size:clamp(2.4rem, 7vw, 5.5rem); font-weight:800; letter-spacing:-0.02em; line-height:1.08;
            background:linear-gradient(120deg,#5eead4,#38bdf8,#818cf8); -webkit-background-clip:text; background-clip:text; color:transparent;
            text-shadow:0 0 40px rgba(56,189,248,.25); }
-  .subtitle { font-size:clamp(1rem, 2.2vw, 1.5rem); color:#9fb0c9; margin-top:1.2rem; font-weight:300; }
-  .cta { margin-top:2.5rem; display:inline-flex; gap:.8rem; flex-wrap:wrap; justify-content:center; }
+  .subtitle { font-size:clamp(1rem, 2.2vw, 1.5rem); color:#9fb0c9; margin-top:1.4rem; font-weight:300; max-width:640px; }
+  .cta { margin-top:2.6rem; display:inline-flex; gap:.8rem; flex-wrap:wrap; justify-content:center; }
   .btn { padding:.9rem 2rem; border-radius:999px; font-weight:600; text-decoration:none; transition:transform .2s, box-shadow .2s; }
   .btn-primary { background:linear-gradient(120deg,#0ea5e9,#6366f1); color:#fff; box-shadow:0 0 30px rgba(99,102,241,.4); }
   .btn-ghost { border:1px solid rgba(255,255,255,.25); color:#dbe4f0; }
@@ -44,6 +44,10 @@
   .logo span { color:#38bdf8; }
   .nav a { color:#aab8d0; text-decoration:none; margin-left:1.5rem; font-size:.9rem; }
   .nav a:hover { color:#7dd3fc; }
+  @media (max-width:640px){
+    .nav { padding:.9rem 1.2rem; }
+    .nav a { margin-left:.9rem; font-size:.82rem; }
+  }
 </style>
 </head>
 <body>
@@ -62,10 +66,10 @@
     <div class="layer" data-depth="0.45">
       <div class="title" id="titre">L'IA au travail<br>dans votre entreprise</div>
     </div>
-    <div class="layer" data-depth="0.55" style="top:58%">
+    <div class="layer" data-depth="0.55">
       <div class="subtitle">Pas dans un PowerPoint. Dans vos heures gagnées, chaque semaine.</div>
     </div>
-    <div class="layer" data-depth="0.7" style="top:72%">
+    <div class="layer" data-depth="0.7">
       <div class="cta">
         <a class="btn btn-primary" href="https://dembis91-940.github.io/agentia/">Audit gratuit 30 min →</a>
         <a class="btn btn-ghost" href="#demo">Voir la démo</a>
@@ -90,6 +94,7 @@
 <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
 <script>
 /* ============ SCÈNE 3D WEBGL ============ */
+try {
 const canvas = document.getElementById('bg');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
 renderer.setSize(innerWidth, innerHeight);
@@ -189,6 +194,7 @@ carte.addEventListener('mouseleave', () => { carte.style.transform = 'rotateX(0)
   camera.lookAt(0,0,0);
   renderer.render(scene, camera);
 })();
+} catch (err) { var bgEl = document.getElementById('bg'); if (bgEl) bgEl.style.display = 'none'; }
 </script>
 </body>
 </html>
