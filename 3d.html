@@ -11,8 +11,10 @@
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Segoe UI', system-ui, sans-serif; background:#05070d; color:#e8ecf5; overflow-x:hidden; }
+  body { font-family:'Inter','Segoe UI', system-ui, sans-serif; background:#04120b; color:#e9f7ef; overflow-x:hidden; }
   #bg { position:fixed; inset:0; z-index:0; }
   .content { position:relative; z-index:2; }
 
@@ -20,39 +22,48 @@
   .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; perspective:1000px; padding:6rem 1.5rem 4rem; }
   .hero-inner { transform-style:preserve-3d; width:min(900px, 100%); }
   .layer { margin:1.6rem 0; display:flex; flex-direction:column; align-items:center; justify-content:center; will-change:transform; }
-  .title { font-size:clamp(2.4rem, 7vw, 5.5rem); font-weight:800; letter-spacing:-0.02em; line-height:1.08;
-           background:linear-gradient(120deg,#5eead4,#38bdf8,#818cf8); -webkit-background-clip:text; background-clip:text; color:transparent;
-           text-shadow:0 0 40px rgba(56,189,248,.25); }
-  .subtitle { font-size:clamp(1rem, 2.2vw, 1.5rem); color:#9fb0c9; margin-top:1.4rem; font-weight:300; max-width:640px; }
+  .title { font-family:'Space Grotesk',sans-serif; font-size:clamp(2.4rem, 7vw, 5.5rem); font-weight:800; letter-spacing:-0.02em; line-height:1.08;
+           background:linear-gradient(120deg,#00ff88,#4dffa8,#ffd166); -webkit-background-clip:text; background-clip:text; color:transparent;
+           text-shadow:0 0 40px rgba(0,255,136,.3); }
+  .subtitle { font-size:clamp(1rem, 2.2vw, 1.5rem); color:#8fb8a3; margin-top:1.4rem; font-weight:300; max-width:640px; }
   .cta { margin-top:2.6rem; display:inline-flex; gap:.8rem; flex-wrap:wrap; justify-content:center; }
   .btn { padding:.9rem 2rem; border-radius:999px; font-weight:600; text-decoration:none; transition:transform .2s, box-shadow .2s; }
-  .btn-primary { background:linear-gradient(120deg,#0ea5e9,#6366f1); color:#fff; box-shadow:0 0 30px rgba(99,102,241,.4); }
-  .btn-ghost { border:1px solid rgba(255,255,255,.25); color:#dbe4f0; }
-  .btn:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 0 45px rgba(99,102,241,.65); }
+  .btn-primary { background:linear-gradient(120deg,#00cc6a,#ffd166); color:#fff; box-shadow:0 0 30px rgba(255,209,102,.35); }
+  .btn-ghost { border:1px solid rgba(255,255,255,.25); color:#cfe6da; }
+  .btn:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 0 45px rgba(0,255,136,.6); }
 
   /* Section démo */
   .demo { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:4rem 6vw; }
-  .card { max-width:640px; background:rgba(13,18,32,.7); border:1px solid rgba(255,255,255,.09); border-radius:24px;
+  .card { max-width:640px; background:rgba(5,20,12,.65); border:1px solid rgba(255,255,255,.09); border-radius:24px;
           padding:2.5rem; backdrop-filter:blur(14px); transform-style:preserve-3d; will-change:transform; box-shadow:0 30px 80px rgba(0,0,0,.5); }
-  .card h2 { font-size:1.8rem; margin-bottom:1rem; background:linear-gradient(120deg,#a5f3fc,#818cf8); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .card p { color:#aab8d0; line-height:1.7; }
+  .card h2 { font-family:'Space Grotesk',sans-serif; font-size:1.8rem; margin-bottom:1rem; background:linear-gradient(120deg,#00ff88,#ffd166); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .card p { color:#8fb8a3; line-height:1.7; }
   .stats { display:flex; gap:2rem; margin-top:2rem; flex-wrap:wrap; }
-  .stat b { font-size:1.6rem; color:#7dd3fc; display:block; }
-  .stat span { color:#7c8aa5; font-size:.85rem; }
+  .stat b { font-size:1.6rem; color:#4dffa8; display:block; }
+  .stat span { color:#6d947f; font-size:.85rem; }
 
-  .scroll-hint { position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); color:#5b6b85; font-size:.8rem; letter-spacing:.25em; text-transform:uppercase; animation:float 2.4s ease-in-out infinite; }
+  .scroll-hint { position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); color:#52715f; font-size:.8rem; letter-spacing:.25em; text-transform:uppercase; animation:float 2.4s ease-in-out infinite; }
   @keyframes float { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,-10px)} }
 
   .nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center;
          padding:1.2rem 2.5rem; background:linear-gradient(rgba(5,7,13,.85), transparent); }
   .logo { font-weight:800; font-size:1.15rem; letter-spacing:.02em; }
-  .logo span { color:#38bdf8; }
-  .nav a { color:#aab8d0; text-decoration:none; margin-left:1.5rem; font-size:.9rem; }
-  .nav a:hover { color:#7dd3fc; }
+  .logo span { color:#4dffa8; }
+  .nav a { color:#8fb8a3; text-decoration:none; margin-left:1.5rem; font-size:.9rem; }
+  .nav a:hover { color:#4dffa8; }
   @media (max-width:640px){
     .nav { padding:.9rem 1.2rem; }
     .nav a { margin-left:.9rem; font-size:.82rem; }
   }
+
+  /* V3 : glow + glass */
+  .card { box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 40px rgba(0,255,136,.08); border:1px solid rgba(0,255,136,.18); }
+  .title { text-shadow:0 0 50px rgba(0,255,136,.35); }
+  .btn-primary { box-shadow:0 0 34px rgba(0,255,136,.45); }
+  .btn-ghost:hover { border-color:rgba(0,255,136,.6); color:#4dffa8; }
+  .logo span { color:#00ff88; text-shadow:0 0 16px rgba(0,255,136,.5); }
+  .stat b { color:#4dffa8; text-shadow:0 0 14px rgba(0,255,136,.4); }
+  ::selection{background:#00ff88;color:#04120b}
 </style>
 </head>
 <body>
@@ -69,7 +80,7 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="layer" data-depth="0.45">
-      <div class="title" id="titre">L'IA au travail<br>dans votre entreprise</div>
+      <h1 class="title" id="titre">L'IA au travail<br>dans votre entreprise</h1>
     </div>
     <div class="layer" data-depth="0.55">
       <div class="subtitle">Pas dans un PowerPoint. Dans vos heures gagnées, chaque semaine.</div>
@@ -117,7 +128,7 @@ for (let i=0;i<COUNT;i++){
   pos[i*3]   = (Math.random()-.5)*22;
   pos[i*3+1] = (Math.random()-.5)*14;
   pos[i*3+2] = (Math.random()-.5)*10 - 2;
-  const c = new THREE.Color().setHSL(.55 + Math.random()*.15, .8, .55 + Math.random()*.35);
+  const c = new THREE.Color().setHSL(.30 + Math.random()*.10, .8, .55 + Math.random()*.35);
   col[i*3]=c.r; col[i*3+1]=c.g; col[i*3+2]=c.b;
 }
 const geo = new THREE.BufferGeometry();
@@ -129,20 +140,20 @@ scene.add(pts);
 /* Objet 3D central : icosaèdre wireframe lumineux */
 const core = new THREE.Mesh(
   new THREE.IcosahedronGeometry(1.6, 1),
-  new THREE.MeshBasicMaterial({ color:0x38bdf8, wireframe:true, transparent:true, opacity:.28 })
+  new THREE.MeshBasicMaterial({ color:0x00ff88, wireframe:true, transparent:true, opacity:.28 })
 );
 scene.add(core);
 
 const core2 = new THREE.Mesh(
   new THREE.IcosahedronGeometry(2.2, 1),
-  new THREE.MeshBasicMaterial({ color:0x818cf8, wireframe:true, transparent:true, opacity:.10 })
+  new THREE.MeshBasicMaterial({ color:0xffd166, wireframe:true, transparent:true, opacity:.10 })
 );
 scene.add(core2);
 
 /* Anneaux orbitaux */
 const ring = new THREE.Mesh(
   new THREE.TorusGeometry(3.1, .008, 8, 90),
-  new THREE.MeshBasicMaterial({ color:0x5eead4, transparent:true, opacity:.35 })
+  new THREE.MeshBasicMaterial({ color:0x00ff88, transparent:true, opacity:.35 })
 );
 scene.add(ring);
 
@@ -200,19 +211,6 @@ carte.addEventListener('mouseleave', () => { carte.style.transform = 'rotateX(0)
   renderer.render(scene, camera);
 })();
 } catch (err) { var bgEl = document.getElementById('bg'); if (bgEl) bgEl.style.display = 'none'; }
-</script>
-<style id="futur-v3">
-:root{--nv:#00ff88;--gold:#ffd166;--bg:#05140c}
-body{background:var(--bg)!important;color:#eafff3!important}
-h1,h2,h3{font-family:'Space Grotesk',system-ui,sans-serif!important;letter-spacing:-.02em}
-h1{background:linear-gradient(90deg,#00ff88,#ffd166);-webkit-background-clip:text;background-clip:text;color:transparent!important}
-.hero,.cta,.card,form,section>div{background:rgba(255,255,255,.04)!important;backdrop-filter:blur(14px);border:1px solid rgba(0,255,136,.25)!important;border-radius:18px}
-button,.btn,a.btn{background:linear-gradient(90deg,#00ff88,#12b76a)!important;color:#05140c!important;border:none;box-shadow:0 0 22px rgba(0,255,136,.45);transition:.3s}
-button:hover,.btn:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(0,255,136,.7)}
-#particles-js,.webgl-bg{opacity:.55}
-</style>
-<script id="f3-script">
-(()=>{const r=(()=>{const s=document.createElement('style');s.id='f3-anim';s.textContent='@keyframes f3Glow{0%,100%{box-shadow:0 0 18px rgba(0,255,136,.25)}50%{box-shadow:0 0 42px rgba(255,209,102,.5)}}.hero,.cta{animation:f3Glow 4s ease-in-out infinite}';document.head.appendChild(s);const o=setInterval(()=>{document.querySelectorAll('.hero,[class*=card],section').forEach(e=>{if(e.dataset.f3)return;e.dataset.f3=1;e.style.opacity='0';e.style.transition='opacity .8s, transform .8s';e.style.transform='translateY(18px)';requestAnimationFrame(()=>{e.style.opacity='1';e.style.transform='none'})})},150);setTimeout(()=>clearInterval(o),8000)})()})();
 </script>
 </body>
 </html>

@@ -1,1 +1,1 @@
-window.VOICE_CONFIG = {"publicKey": "2a56853c-e9e2-49b1-aaab-3f42eaf3312f", "assistantId": "2900041f-a7b8-4e93-b37d-c7e50fb06719", "accent": "#0d7a4b"};
+window.VOICE_CONFIG = {"publicKey": "2a56853c-e9e2-49b1-aaab-3f42eaf3312f", "assistantId": "2900041f-a7b8-4e93-b37d-c7e50fb06719", "accent": "#00ff88"};
