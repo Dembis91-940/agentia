@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agentia — L'IA au travail dans votre entreprise | Audit gratuit 30 min</title>
 <meta name="description" content="Agentia installe l'IA dans les PME : chatbot site web 24/7, automatisation devis/factures/emails, agent WhatsApp. Audit gratuit de 30 min. Résultats mesurés, garantie 30 jours.">
 <meta property="og:title" content="Agentia — L'IA au travail dans votre entreprise | Audit gratuit 30 min">
@@ -29,337 +29,1045 @@
   }
 }
 </script>
-<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23050b08'/><path d='M8 22 L8 12 L16 12 L16 20 L24 20' fill='none' stroke='%2300ff88' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><circle cx='24' cy='12' r='3' fill='%2300ff88'/></svg>">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+/* ============================================================
+   AGENTIA — la machine au travail.
+   Identité : console vert-noir, vert néon de la marque, mono pour
+   les états. Univers circuit / flux / engrenage. PAS un coffre-fort.
+   ============================================================ */
+:root {
+  --sc-canvas:      #050b08;
+  --sc-surface:     #0b1510;
+  --sc-ink:         #eaf6ef;
+  --sc-ink-soft:    #96b0a2;
+  --sc-accent:      #00ff88;
+  --sc-accent-ink:  #02130b;
+  --sc-font-display: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --sc-font-text:    "Avenir Next", system-ui, sans-serif;
+  --sc-font-mono:    ui-monospace, "SF Mono", "Menlo", "Cascadia Mono", monospace;
+  --sc-shadow-color: 155 48% 2%;
+  --green-2: #4fd38d;
+  --green-3: #34d399;
+  --green-deep: #00cc6a;
+  --amber:   #ffb03a;
+  --amber-2: #ff8a3d;
+  --red:     #ff5a3f;
+}
+body { background: var(--sc-canvas); }
+
+/* ---------- typo machine ---------- */
+.sc-display { font-weight: 650; letter-spacing: -0.03em; }
+.sc-display--xl { font-size: var(--sc-t-4xl); letter-spacing: -0.035em; }
+.mono { font-family: var(--sc-font-mono); }
+
+/* ---------- app chrome : la barre de la machine ---------- */
+.machbar {
+  position: fixed; inset: 0 0 auto 0; z-index: var(--sc-z-chrome);
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.55rem clamp(1rem, 3vw, 2rem);
+  background: color-mix(in oklab, var(--sc-canvas) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--sc-hairline);
+  height: 3.4rem;
+}
+.machbar__mark { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; }
+.machbar__mark svg { width: 26px; height: 26px; }
+.machbar__mark b { font-family: var(--sc-font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; }
+.machbar__mark b span { color: var(--sc-accent); }
+.machbar__status {
+  display: flex; align-items: center; gap: 0.45rem;
+  font-family: var(--sc-font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  color: var(--green-2); text-transform: uppercase;
+  border: 1px solid color-mix(in oklab, var(--sc-accent) 30%, transparent);
+  border-radius: var(--sc-r-pill); padding: 0.18rem 0.6rem;
+}
+.machbar__status .led {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--sc-accent); box-shadow: 0 0 8px var(--sc-accent);
+  animation: ledPulse 2.2s ease-in-out infinite;
+}
+@keyframes ledPulse { 0%,100% { transform: scale(0.8); opacity: 0.75; } 50% { transform: scale(1.15); opacity: 1; } }
+.machbar__nav { display: flex; gap: 0.4rem; margin-left: auto; }
+.machbar__nav a {
+  color: var(--sc-ink-soft); text-decoration: none; font-size: 0.86rem;
+  padding: 0.35rem 0.7rem; border-radius: var(--sc-r-sm); transition: color 140ms var(--sc-ease-out), background 140ms var(--sc-ease-out);
+}
+.machbar__nav a:hover { color: var(--sc-ink); background: color-mix(in oklab, var(--sc-ink) 7%, transparent); }
+.machbar__cta {
+  font-weight: 650; font-size: 0.86rem; text-decoration: none; color: var(--sc-accent-ink);
+  background: linear-gradient(135deg, var(--sc-accent) 0%, var(--green-deep) 100%);
+  border-radius: var(--sc-r-pill); padding: 0.5rem 1.1rem;
+  transition: transform 140ms var(--sc-ease-out), filter 140ms var(--sc-ease-out);
+}
+.machbar__cta:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.machbar__cta:active { transform: scale(0.97); }
+.machbar__toggle {
+  display: none; margin-left: auto; background: none; border: 1px solid var(--sc-hairline-strong);
+  color: var(--sc-ink); border-radius: var(--sc-r-sm); padding: 0.4rem 0.6rem; cursor: pointer;
+}
+.machbar__toggle:hover { border-color: var(--sc-accent); }
+.machbar__drop {
+  display: none; position: fixed; top: 3.4rem; right: 0.8rem; z-index: calc(var(--sc-z-chrome) + 1);
+  flex-direction: column; gap: 0.25rem; min-width: 220px; padding: 0.6rem;
+  background: var(--sc-surface); border: 1px solid var(--sc-hairline-strong); border-radius: var(--sc-r-md);
+  box-shadow: var(--sc-e3);
+}
+.machbar__drop.open { display: flex; }
+.machbar__drop a { color: var(--sc-ink); text-decoration: none; padding: 0.55rem 0.8rem; border-radius: var(--sc-r-sm); font-size: 0.95rem; }
+.machbar__drop a:hover { background: color-mix(in oklab, var(--sc-accent) 12%, transparent); color: var(--sc-accent); }
+
+/* ---------- ambience (couches décoratives, jamais pilotées par l'engine) ---------- */
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.ambient__grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--sc-accent) 4.5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--sc-accent) 4.5%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(120% 100% at 50% 0%, #000 30%, transparent 78%);
+  animation: gridDrift 26s linear infinite;
+}
+@keyframes gridDrift { from { background-position: 0 0, 0 0; } to { background-position: 0 56px, 56px 0; } }
+.ambient__orb { position: absolute; border-radius: 50%; filter: blur(70px); }
+.ambient__orb--1 { width: 44vw; height: 44vw; left: -12vw; top: 6vh; background: color-mix(in oklab, var(--sc-accent) 7%, transparent); animation: orbFloat 19s ease-in-out infinite; }
+.ambient__orb--2 { width: 36vw; height: 36vw; right: -10vw; top: 46vh; background: color-mix(in oklab, var(--green-3) 6%, transparent); animation: orbFloat 23s ease-in-out infinite reverse; }
+@keyframes orbFloat { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(3vw, 4vh, 0) scale(1.08); } }
+#flux-particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+
+/* ---------- curseur custom (gated pointer fin + pas reduced) ---------- */
+.cursor { position: fixed; top: 0; left: 0; z-index: 120; pointer-events: none; opacity: 0; }
+.cursor .dot { position: absolute; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--sc-accent); box-shadow: 0 0 10px var(--sc-accent); }
+.cursor .ring { position: absolute; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--sc-accent) 60%, transparent); }
+.cursor .tr { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: color-mix(in oklab, var(--sc-accent) 55%, transparent); }
+@media (hover: hover) and (pointer: fine) { .cursor.on { opacity: 1; } }
+
+/* ---------- LA SIGNATURE : le récupérateur d'heures ---------- */
+.recover {
+  position: fixed; left: clamp(0.9rem, 2.4vw, 2rem); bottom: clamp(0.9rem, 2.4vw, 2rem); z-index: 55;
+  width: 236px; padding: 0.8rem 0.9rem 0.7rem;
+  background: color-mix(in oklab, var(--sc-surface) 92%, transparent);
+  border: 1px solid var(--sc-hairline-strong); border-radius: var(--sc-r-md);
+  box-shadow: var(--sc-e2), 0 0 24px color-mix(in oklab, var(--sc-accent) 7%, transparent);
+  backdrop-filter: blur(8px);
+  font-family: var(--sc-font-mono);
+}
+.recover__head { display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.35rem; }
+.recover__led { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 8px var(--amber); flex: none; transition: background 400ms, box-shadow 400ms; }
+.recover__led.lit { background: var(--sc-accent); box-shadow: 0 0 10px var(--sc-accent); animation: ledPulse 1.8s ease-in-out infinite; }
+.recover__label { font-size: 0.6rem; letter-spacing: 0.14em; color: var(--sc-ink-soft); text-transform: uppercase; }
+.recover__num { display: flex; align-items: baseline; gap: 0.35rem; line-height: 1; }
+.recover__num b { font-size: 2rem; font-weight: 700; color: var(--sc-accent); text-shadow: 0 0 18px color-mix(in oklab, var(--sc-accent) 45%, transparent); font-variant-numeric: tabular-nums; }
+.recover__unit { font-size: 0.7rem; color: var(--sc-ink-soft); }
+.recover__sub { font-size: 0.62rem; color: var(--sc-ink-soft); margin-top: 0.25rem; line-height: 1.35; }
+.recover__chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; min-height: 1.3rem; }
+.recover__chip { font-size: 0.62rem; letter-spacing: 0.04em; color: var(--sc-accent); border: 1px solid color-mix(in oklab, var(--sc-accent) 38%, transparent); border-radius: var(--sc-r-pill); padding: 0.14rem 0.5rem; }
+.recover__week { display: flex; gap: 0.32rem; margin-top: 0.55rem; }
+.recover__week span { flex: 1; text-align: center; font-size: 0.56rem; letter-spacing: 0.1em; color: var(--sc-ink-soft); border-top: 2px solid color-mix(in oklab, var(--sc-ink) 14%, transparent); padding-top: 0.28rem; transition: color 300ms, border-color 300ms; }
+.recover__week span.lit { color: var(--sc-accent); border-color: var(--sc-accent); text-shadow: 0 0 10px color-mix(in oklab, var(--sc-accent) 60%, transparent); }
+
+/* ---------- boutons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  font-family: var(--sc-font-text); font-weight: 650; font-size: 0.95rem; text-decoration: none;
+  border-radius: var(--sc-r-pill); padding: 0.78rem 1.5rem; cursor: pointer;
+  transition: transform 150ms var(--sc-ease-out), filter 150ms var(--sc-ease-out), background 150ms var(--sc-ease-out), border-color 150ms var(--sc-ease-out);
+}
+.btn:active { transform: scale(0.97); }
+.btn--accent { color: var(--sc-accent-ink); background: linear-gradient(135deg, var(--sc-accent) 0%, var(--green-deep) 100%); box-shadow: 0 6px 22px -8px color-mix(in oklab, var(--sc-accent) 55%, transparent); }
+.btn--accent:hover { transform: translateY(-1px); filter: brightness(1.07); }
+.btn--ghost { color: var(--sc-ink); border: 1px solid var(--sc-hairline-strong); background: transparent; }
+.btn--ghost:hover { border-color: color-mix(in oklab, var(--sc-accent) 55%, transparent); color: var(--sc-accent); background: color-mix(in oklab, var(--sc-accent) 6%, transparent); }
+
+/* ---------- ACT 1 : la console du matin ---------- */
+.hero-section { padding-top: clamp(4rem, 7vh, 5.2rem); padding-bottom: clamp(3rem, 7vh, 5.5rem); }
+.console {
+  position: relative;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--sc-surface) 88%, var(--sc-accent) 4%) 0%, var(--sc-surface) 100%);
+  border: 1px solid var(--sc-hairline-strong); border-radius: var(--sc-r-lg);
+  box-shadow: var(--sc-e2), inset var(--sc-edge);
+  padding: clamp(1.1rem, 3vw, 1.8rem);
+}
+.console::before, .console::after {
+  content: ""; position: absolute; width: 26px; height: 26px; pointer-events: none;
+  border: 2px solid color-mix(in oklab, var(--sc-accent) 55%, transparent);
+}
+.console::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; border-top-left-radius: var(--sc-r-lg); }
+.console::after { bottom: -2px; right: -2px; border-left: 0; border-top: 0; border-bottom-right-radius: var(--sc-r-lg); }
+.console__bar { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.1rem; }
+.console__led { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.led--amber { background: var(--amber); box-shadow: 0 0 10px var(--amber); animation: ledPulse 1.6s ease-in-out infinite; }
+.console__title { font-family: var(--sc-font-mono); font-size: 0.66rem; letter-spacing: 0.16em; color: var(--sc-ink-soft); text-transform: uppercase; }
+.console__status { margin-left: auto; font-family: var(--sc-font-mono); font-size: 0.66rem; letter-spacing: 0.14em; color: var(--amber); text-transform: uppercase; }
+.console__problem { font-family: var(--sc-font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--sc-ink-soft); text-transform: uppercase; margin-bottom: 0.9rem; }
+.console__problem b { color: var(--amber); font-weight: 600; }
+.hero-h { margin: 0 0 0.9rem; max-width: 28ch; font-size: clamp(2.5rem, 2.2rem + 2.4vw, 4.25rem); }
+.hero-h em { font-style: italic; color: var(--sc-accent); }
+.hero-sub { max-width: 56ch; color: var(--sc-ink-soft); font-size: var(--sc-t-base); line-height: 1.6; margin: 0 0 1rem; }
+.queue { border: 1px solid var(--sc-hairline); border-radius: var(--sc-r-md); overflow: hidden; margin-bottom: 0.9rem; background: color-mix(in oklab, var(--sc-canvas) 55%, transparent); }
+.queue__row { display: flex; align-items: center; gap: 0.7rem; padding: 0.46rem 0.85rem; border-bottom: 1px solid var(--sc-hairline); }
+.queue__row:last-child { border-bottom: 0; }
+.queue__led { width: 9px; height: 9px; border-radius: 50%; flex: none; background: var(--amber); box-shadow: 0 0 8px var(--amber); animation: ledPulse 1.5s ease-in-out infinite; }
+.queue__name { flex: 1; font-size: 0.92rem; color: var(--sc-ink); min-width: 0; }
+.queue__hours { font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-ink-soft); white-space: nowrap; }
+.cost {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--amber) 38%, transparent);
+  border-radius: var(--sc-r-md); padding: 0.7rem 0.9rem; margin-bottom: 1rem;
+  background: color-mix(in oklab, var(--amber) 6%, transparent);
+}
+.cost__label { font-family: var(--sc-font-mono); font-size: 0.62rem; letter-spacing: 0.14em; color: var(--amber); text-transform: uppercase; width: 100%; }
+.cost__num { font-size: 1.7rem; font-weight: 700; color: var(--amber); font-variant-numeric: tabular-nums; text-shadow: 0 0 16px color-mix(in oklab, var(--amber) 40%, transparent); }
+.cost__unit { font-family: var(--sc-font-mono); font-size: 0.8rem; color: var(--amber); }
+.cost__calc { font-size: 0.78rem; color: var(--sc-ink-soft); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1rem; }
+.trust { font-size: 0.8rem; color: var(--sc-ink-soft); max-width: 64ch; margin: 0 0 1.6rem; }
+.trust b { color: var(--sc-accent); font-weight: 650; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; border-top: 1px solid var(--sc-hairline); padding-top: 1.1rem; }
+.stat { border-left: 2px solid color-mix(in oklab, var(--sc-accent) 40%, transparent); padding-left: 0.8rem; }
+.stat .big { font-family: var(--sc-font-display); font-size: 1.35rem; font-weight: 700; color: var(--sc-ink); }
+.stat .lbl { font-size: 0.72rem; color: var(--sc-ink-soft); line-height: 1.35; margin-top: 0.2rem; }
+.processus { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-top: 1.3rem; padding-top: 1rem; border-top: 1px dashed var(--sc-hairline); }
+.processus__k { font-family: var(--sc-font-mono); font-size: 0.62rem; letter-spacing: 0.14em; color: var(--sc-ink-soft); text-transform: uppercase; margin-right: 0.4rem; }
+.processus__step { font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-ink); border: 1px solid var(--sc-hairline); border-radius: var(--sc-r-pill); padding: 0.26rem 0.7rem; }
+.processus__step b { color: var(--sc-accent); font-weight: 600; }
+.processus__arrow { color: var(--sc-accent); font-size: 0.8rem; }
+
+/* ---------- ACT 2 : la machine prend la main ---------- */
+#machine { background: transparent; }
+.machine-stage { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.2rem, 4vw, 3rem); align-items: center; height: 100svh; padding: 5.5rem clamp(1.1rem, 4vw, 3rem) 4rem; }
+.machine-copy { position: absolute; top: 0; left: 0; right: 0; text-align: center; padding-top: 4.4rem; pointer-events: none; }
+.machine-copy h2 { margin: 0; }
+.machine-copy .turn { color: var(--sc-accent); font-weight: 700; font-style: italic; }
+.machine-copy .machine-sub { font-family: var(--sc-font-mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--sc-ink-soft); text-transform: uppercase; margin-top: 0.5rem; }
+.circuit { position: relative; aspect-ratio: 4 / 3; max-height: 62vh; width: 100%; }
+.circuit svg { width: 100%; height: 100%; overflow: visible; }
+.circuit .trace { fill: none; stroke: var(--sc-accent); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0.82; }
+.circuit .node { fill: var(--sc-accent); opacity: 0; }
+.circuit .pulse { fill: var(--sc-accent); filter: drop-shadow(0 0 6px var(--sc-accent)); animation: pulsePath 4.2s linear infinite; opacity: 0; }
+#machine .trace--t1 { stroke-dashoffset: calc(1 - clamp(0, (var(--sc-p) - 0.05) * 1.7, 1)); }
+#machine .trace--t2 { stroke-dashoffset: calc(1 - clamp(0, (var(--sc-p) - 0.18) * 1.7, 1)); }
+#machine .trace--t3 { stroke-dashoffset: calc(1 - clamp(0, (var(--sc-p) - 0.34) * 1.7, 1)); }
+#machine .trace--t4 { stroke-dashoffset: calc(1 - clamp(0, (var(--sc-p) - 0.5) * 1.7, 1)); }
+#machine .node--n1 { opacity: clamp(0, (var(--sc-p) - 0.05) * 8, 1); }
+#machine .node--n2 { opacity: clamp(0, (var(--sc-p) - 0.18) * 8, 1); }
+#machine .node--n3 { opacity: clamp(0, (var(--sc-p) - 0.34) * 8, 1); }
+#machine .node--n4 { opacity: clamp(0, (var(--sc-p) - 0.5) * 8, 1); }
+#machine .pulse--p1 { offset-path: path('M20 200 H140 V120 H260 V60 H380'); animation-delay: 0s; opacity: clamp(0, (var(--sc-p) - 0.08) * 6, 1); }
+#machine .pulse--p2 { offset-path: path('M380 60 H260 V120 H160 V40'); animation-delay: 2.1s; opacity: clamp(0, (var(--sc-p) - 0.4) * 6, 1); }
+@keyframes pulsePath { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+.tasks { display: flex; flex-direction: column; gap: 0.5rem; }
+.task-row {
+  display: flex; align-items: center; gap: 0.65rem;
+  border: 1px solid var(--sc-hairline); border-radius: var(--sc-r-md);
+  padding: 0.55rem 0.8rem; background: color-mix(in oklab, var(--sc-canvas) 55%, transparent);
+  transition: border-color 300ms var(--sc-ease-out), background 300ms var(--sc-ease-out), box-shadow 300ms var(--sc-ease-out);
+}
+.task-row .t-led {
+  width: 10px; height: 10px; border-radius: 50%; flex: none;
+  background: var(--amber); box-shadow: 0 0 8px var(--amber); transition: background 300ms, box-shadow 300ms;
+}
+.task-row .t-name { flex: 1; font-size: 0.86rem; color: var(--sc-ink); min-width: 0; }
+.task-row .t-hours { font-family: var(--sc-font-mono); font-size: 0.68rem; color: var(--sc-ink-soft); white-space: nowrap; }
+.task-row .t-state { font-family: var(--sc-font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+.task-row .t-state--wait { color: var(--amber); opacity: 1; }
+.task-row .t-state--done { color: var(--sc-accent); opacity: 0; }
+#machine { --t1: clamp(0, (var(--sc-p) - 0.16) * 12, 1); --t2: clamp(0, (var(--sc-p) - 0.3) * 12, 1); --t3: clamp(0, (var(--sc-p) - 0.44) * 12, 1); --t4: clamp(0, (var(--sc-p) - 0.58) * 12, 1); --t5: clamp(0, (var(--sc-p) - 0.72) * 12, 1); }
+.task-row:nth-child(1) { --t: var(--t1); }
+.task-row:nth-child(2) { --t: var(--t2); }
+.task-row:nth-child(3) { --t: var(--t3); }
+.task-row:nth-child(4) { --t: var(--t4); }
+.task-row:nth-child(5) { --t: var(--t5); }
+.task-row { position: relative; }
+.task-row .t-led { background: color-mix(in srgb, var(--sc-accent) calc(var(--t) * 100%), var(--amber)); box-shadow: 0 0 10px color-mix(in srgb, var(--sc-accent) calc(var(--t) * 100%), transparent); }
+.task-row .t-state--wait { opacity: calc(1 - var(--t)); }
+.task-row .t-state--done { opacity: var(--t); }
+.task-row.flipped { border-color: color-mix(in oklab, var(--sc-accent) 45%, transparent); background: color-mix(in oklab, var(--sc-accent) 7%, transparent); box-shadow: 0 0 18px -6px color-mix(in oklab, var(--sc-accent) 40%, transparent); }
+.machine-readout { position: absolute; bottom: 1.6rem; left: 0; right: 0; text-align: center; font-family: var(--sc-font-mono); font-size: 0.68rem; letter-spacing: 0.14em; color: var(--sc-ink-soft); text-transform: uppercase; }
+
+/* ---------- ACT 3 : la ligne des cas mesurés ---------- */
+.rail { display: flex; align-items: center; gap: clamp(1.1rem, 2.6vw, 2rem); padding-inline: clamp(1.1rem, 4vw, 3rem); height: 100%; }
+.rail__lead { flex: none; width: clamp(280px, 34vw, 460px); }
+.rail__lead .kicker, .kicker { font-family: var(--sc-font-mono); font-size: 0.7rem; letter-spacing: 0.16em; color: var(--sc-accent); text-transform: uppercase; }
+.rail__lead h2 { margin: 0.5rem 0 0.7rem; }
+.rail__lead p { color: var(--sc-ink-soft); font-size: 0.95rem; max-width: 40ch; margin: 0; }
+.rail__lead .rail-note { font-family: var(--sc-font-mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--sc-ink-soft); text-transform: uppercase; margin-top: 1.2rem; border-top: 1px dashed var(--sc-hairline); padding-top: 0.8rem; }
+.case-card { flex: none; width: clamp(280px, 24vw, 340px); }
+.case-card .cc {
+  border: 1px solid var(--sc-hairline); border-radius: var(--sc-r-lg);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--sc-surface) 92%, var(--sc-accent) 3%) 0%, var(--sc-surface) 100%);
+  padding: 1.3rem; box-shadow: var(--sc-e1), inset var(--sc-edge);
+  transition: border-color 160ms var(--sc-ease-out), transform 160ms var(--sc-ease-out);
+}
+.case-card .cc:hover { border-color: color-mix(in oklab, var(--sc-accent) 50%, transparent); }
+.case-card .cc-icon { width: 40px; height: 40px; margin-bottom: 1rem; }
+.case-card .cc-icon svg { width: 100%; height: 100%; }
+.case-card .cc-icon path, .case-card .cc-icon circle, .case-card .cc-icon line { stroke: var(--sc-accent); }
+.case-card h3 { font-family: var(--sc-font-display); font-size: 1.2rem; font-weight: 700; margin: 0 0 0.4rem; }
+.case-card .cc-task { font-size: 0.86rem; color: var(--sc-ink-soft); line-height: 1.45; margin: 0 0 1.1rem; min-height: 3.4em; }
+.case-card .cc-gain { font-family: var(--sc-font-mono); font-size: 1.05rem; font-weight: 700; color: var(--sc-accent); }
+.case-card .cc-gain small { display: block; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em; color: var(--sc-ink-soft); text-transform: uppercase; margin-top: 0.2rem; }
+
+/* ---------- ACT 4 : le catalogue de la machine ---------- */
+.offres { padding-block: clamp(4rem, 9vw, 7rem); }
+.offres .sec-head { max-width: 60ch; margin-bottom: 2.4rem; }
+.offres .sec-head .kicker { margin-bottom: 0.6rem; display: block; }
+.offres .sec-head h2 { margin: 0 0 0.8rem; }
+.offres .sec-head .lead { color: var(--sc-ink-soft); font-size: 1rem; margin: 0 0 1rem; }
+.nouveau { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--sc-ink); text-decoration: none; border: 1px solid color-mix(in oklab, var(--sc-accent) 38%, transparent); border-radius: var(--sc-r-pill); padding: 0.42rem 0.9rem; transition: border-color 150ms, background 150ms; }
+.nouveau:hover { border-color: var(--sc-accent); background: color-mix(in oklab, var(--sc-accent) 7%, transparent); }
+.nouveau .tag { font-family: var(--sc-font-mono); font-size: 0.6rem; letter-spacing: 0.14em; color: var(--sc-accent-ink); background: linear-gradient(135deg, var(--sc-accent), var(--green-deep)); border-radius: var(--sc-r-pill); padding: 0.14rem 0.5rem; text-transform: uppercase; }
+.offer-rows { display: flex; flex-direction: column; }
+.offer-row {
+  display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1.4rem;
+  border-top: 1px solid var(--sc-hairline); padding: 1.4rem 0.2rem;
+  text-decoration: none; color: inherit; transition: border-color 150ms, background 150ms;
+}
+.offer-row:last-child { border-bottom: 1px solid var(--sc-hairline); }
+.offer-row:hover { border-color: color-mix(in oklab, var(--sc-accent) 40%, transparent); }
+.offer-row .or-name { font-family: var(--sc-font-display); font-size: 1.35rem; font-weight: 650; }
+.offer-row .or-desc { color: var(--sc-ink-soft); font-size: 0.88rem; margin-top: 0.35rem; max-width: 52ch; }
+.offer-row .or-price { text-align: right; font-family: var(--sc-font-mono); }
+.offer-row .or-price b { font-size: 1.2rem; color: var(--sc-accent); font-weight: 700; }
+.offer-row .or-price small { display: block; font-size: 0.64rem; color: var(--sc-ink-soft); margin-top: 0.2rem; letter-spacing: 0.04em; }
+.offer-row .or-cta { font-size: 0.8rem; color: var(--sc-accent); border: 1px solid color-mix(in oklab, var(--sc-accent) 38%, transparent); border-radius: var(--sc-r-pill); padding: 0.42rem 0.95rem; white-space: nowrap; text-decoration: none; transition: background 150ms; }
+.offer-row .or-cta:hover { background: color-mix(in oklab, var(--sc-accent) 10%, transparent); }
+.roi-line { font-size: 0.82rem; color: var(--sc-ink-soft); margin-top: 1.4rem; }
+.roi-line b { color: var(--sc-accent); }
+.preuves { margin-top: 3.2rem; border-top: 1px dashed var(--sc-hairline); padding-top: 2.4rem; }
+.preuves .kicker { display: block; margin-bottom: 0.5rem; }
+.preuves h2 { margin: 0 0 0.6rem; }
+.preuves .lead { color: var(--sc-ink-soft); font-size: 0.9rem; max-width: 66ch; margin: 0 0 1.6rem; }
+.testis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.testi { border-left: 2px solid color-mix(in oklab, var(--sc-accent) 45%, transparent); padding: 0.2rem 0 0.2rem 1rem; }
+.testi .q { font-size: 0.9rem; color: var(--sc-ink); line-height: 1.5; margin: 0 0 0.5rem; }
+.testi .q b { color: var(--sc-accent); font-weight: 650; }
+.testi .who { font-family: var(--sc-font-mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--sc-ink-soft); text-transform: uppercase; }
+
+/* ---------- ACT 5 : l'ascenseur (PIC) ---------- */
+#ascenseur { --sc-p: 0; }
+.lift-stage { height: 100svh; display: grid; grid-template-columns: 1fr minmax(300px, 420px); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; padding: 4.5rem clamp(1.1rem, 4vw, 3rem) 3.5rem; }
+.lift-copy .kicker { display: block; margin-bottom: 0.6rem; }
+.lift-copy h2 { margin: 0 0 0.9rem; }
+.lift-copy .lift-lede { color: var(--sc-ink-soft); font-size: 0.95rem; max-width: 46ch; line-height: 1.6; margin: 0; }
+.lift-copy .lift-note { font-family: var(--sc-font-mono); font-size: 0.68rem; letter-spacing: 0.1em; color: var(--sc-ink-soft); text-transform: uppercase; margin-top: 1.3rem; border-top: 1px dashed var(--sc-hairline); padding-top: 0.9rem; max-width: 46ch; }
+.lift { position: relative; height: clamp(340px, 62vh, 520px); }
+.lift__shaft {
+  position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 8px;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--sc-accent) 18%, transparent), color-mix(in oklab, var(--sc-accent) 55%, transparent), color-mix(in oklab, var(--sc-accent) 18%, transparent));
+  border-radius: 4px; opacity: 0.5;
+}
+.lift__floor { position: absolute; left: 50%; transform: translateX(calc(-50% - 170px)); width: 340px; display: flex; align-items: center; gap: 0.8rem; }
+.lift__floor--0 { bottom: 0; }
+.lift__floor--1 { bottom: 26%; }
+.lift__floor--2 { bottom: 52%; }
+.lift__floor-num { font-family: var(--sc-font-mono); font-size: 0.62rem; letter-spacing: 0.12em; color: var(--sc-ink-soft); border: 1px solid var(--sc-hairline); border-radius: var(--sc-r-pill); padding: 0.2rem 0.5rem; flex: none; transition: color 300ms, border-color 300ms, box-shadow 300ms; }
+.lift__floor-body { text-align: right; }
+.lift__floor-body h3 { font-family: var(--sc-font-display); font-size: 1rem; font-weight: 700; margin: 0 0 0.15rem; }
+.lift__floor-body p { font-size: 0.72rem; color: var(--sc-ink-soft); margin: 0 0 0.2rem; line-height: 1.35; }
+.lift__floor-price { font-family: var(--sc-font-mono); font-size: 0.86rem; font-weight: 700; color: var(--sc-ink); transition: color 300ms; }
+#ascenseur { --f0: clamp(0, (var(--sc-p) - 0.3) * 5, 1); --f1: clamp(0, (var(--sc-p) - 0.52) * 5, 1); --f2: clamp(0, (var(--sc-p) - 0.74) * 5, 1); }
+.lift__floor--0 .lift__floor-num { color: color-mix(in srgb, var(--sc-accent) calc(var(--f0) * 100%), var(--sc-ink-soft)); border-color: color-mix(in srgb, var(--sc-accent) calc(var(--f0) * 100%), var(--sc-hairline)); box-shadow: 0 0 14px -4px color-mix(in srgb, var(--sc-accent) calc(var(--f0) * 100%), transparent); }
+.lift__floor--0 .lift__floor-price { color: color-mix(in srgb, var(--sc-accent) calc(var(--f0) * 100%), var(--sc-ink)); }
+.lift__floor--1 .lift__floor-num { color: color-mix(in srgb, var(--sc-accent) calc(var(--f1) * 100%), var(--sc-ink-soft)); border-color: color-mix(in srgb, var(--sc-accent) calc(var(--f1) * 100%), var(--sc-hairline)); box-shadow: 0 0 14px -4px color-mix(in srgb, var(--sc-accent) calc(var(--f1) * 100%), transparent); }
+.lift__floor--1 .lift__floor-price { color: color-mix(in srgb, var(--sc-accent) calc(var(--f1) * 100%), var(--sc-ink)); }
+.lift__floor--2 .lift__floor-num { color: color-mix(in srgb, var(--sc-accent) calc(var(--f2) * 100%), var(--sc-ink-soft)); border-color: color-mix(in srgb, var(--sc-accent) calc(var(--f2) * 100%), var(--sc-hairline)); box-shadow: 0 0 14px -4px color-mix(in srgb, var(--sc-accent) calc(var(--f2) * 100%), transparent); }
+.lift__floor--2 .lift__floor-price { color: color-mix(in srgb, var(--sc-accent) calc(var(--f2) * 100%), var(--sc-ink)); }
+.lift__car {
+  position: absolute; left: 50%; bottom: 0;
+  width: min(150px, 36%); height: 17%;
+  transform: translateX(-50%) translateY(calc(min(var(--sc-p), 0.8) * 1.25 * -306%));
+  z-index: 3;
+}
+.lift__car .cab {
+  position: relative; width: 100%; height: 100%;
+  background: linear-gradient(160deg, color-mix(in oklab, var(--sc-surface) 70%, var(--sc-accent) 18%) 0%, var(--sc-surface) 100%);
+  border: 1.5px solid var(--sc-accent); border-radius: 10px;
+  box-shadow: 0 0 26px -6px var(--sc-accent), inset var(--sc-edge);
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px;
+}
+.lift__car .cab::before { content: ""; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 62%; height: 30%; border: 1px solid color-mix(in oklab, var(--sc-accent) 45%, transparent); border-radius: 5px; background: color-mix(in oklab, var(--sc-canvas) 60%, transparent); }
+.lift__car .cab::after { content: ""; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 70%; height: 3px; border-radius: 2px; background: var(--sc-accent); box-shadow: 0 0 8px var(--sc-accent); }
+.lift__car .cab b { font-family: var(--sc-font-mono); font-size: 0.56rem; letter-spacing: 0.14em; color: var(--sc-accent); text-transform: uppercase; }
+.lift__floor-tick { position: absolute; left: 50%; transform: translateX(-50%); width: 26px; height: 1px; background: color-mix(in oklab, var(--sc-accent) 35%, transparent); }
+.lift__floor-tick--0 { bottom: 0; } .lift__floor-tick--1 { bottom: 26%; } .lift__floor-tick--2 { bottom: 52%; }
+.lift__readout { position: absolute; right: 4%; top: 4%; font-family: var(--sc-font-mono); font-size: 0.66rem; letter-spacing: 0.14em; color: var(--sc-ink-soft); text-transform: uppercase; text-align: right; }
+.lift__readout b { color: var(--sc-accent); font-size: 1.1rem; display: block; text-shadow: 0 0 12px color-mix(in oklab, var(--sc-accent) 50%, transparent); }
+.lift-guarantee {
+  position: absolute; top: 50%; left: 50%; width: min(560px, 86%); z-index: 6;
+  transform: translate(-50%, -50%);
+  opacity: var(--g); pointer-events: none;
+  text-align: center;
+}
+#ascenseur { --g: clamp(0, (var(--sc-p) - 0.8) * 14, 1); }
+.lift-guarantee__burst {
+  position: absolute; inset: -38% -12%; z-index: -1; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, color-mix(in oklab, var(--sc-accent) 22%, transparent) 0%, transparent 62%);
+  opacity: var(--g);
+  transform: scale(calc(0.72 + var(--g) * 0.28));
+}
+.lift-guarantee__panel {
+  border: 1px solid color-mix(in oklab, var(--sc-accent) 52%, transparent); border-radius: var(--sc-r-lg);
+  background: color-mix(in oklab, var(--sc-surface) 94%, var(--sc-accent) 5%);
+  box-shadow: var(--sc-e3), 0 0 42px -10px color-mix(in oklab, var(--sc-accent) 55%, transparent), inset var(--sc-edge);
+  padding: 1.8rem 2rem;
+}
+.lift-guarantee__tag { font-family: var(--sc-font-mono); font-size: 0.66rem; letter-spacing: 0.18em; color: var(--sc-accent); text-transform: uppercase; }
+.lift-guarantee h3 { font-family: var(--sc-font-display); font-size: 1.5rem; font-weight: 700; line-height: 1.15; margin: 0.6rem 0 0.5rem; }
+.lift-guarantee p { color: var(--sc-ink-soft); font-size: 0.88rem; margin: 0 0 1.2rem; }
+.lift-guarantee .pill { display: inline-block; font-family: var(--sc-font-mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--sc-accent); border: 1px solid color-mix(in oklab, var(--sc-accent) 40%, transparent); border-radius: var(--sc-r-pill); padding: 0.32rem 0.8rem; margin-bottom: 1.2rem; }
+.lift-guarantee .btn { pointer-events: auto; }
+
+/* ---------- ACT 6 : FAQ ---------- */
+.faq { padding-block: clamp(3.5rem, 8vw, 6rem); }
+.faq .sec-head { max-width: 60ch; margin-bottom: 2rem; }
+.faq .sec-head .kicker { display: block; margin-bottom: 0.6rem; }
+.faq .sec-head h2 { margin: 0; }
+.faq-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1.6rem; }
+details.faq-item { border: 1px solid var(--sc-hairline); border-radius: var(--sc-r-md); background: color-mix(in oklab, var(--sc-surface) 60%, transparent); }
+details.faq-item summary { cursor: pointer; list-style: none; padding: 1rem 1.2rem; font-weight: 650; color: var(--sc-ink); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after { content: "+"; font-family: var(--sc-font-mono); color: var(--sc-accent); font-size: 1.1rem; transition: transform 180ms var(--sc-ease-out); }
+details.faq-item[open] summary::after { transform: rotate(45deg); }
+details.faq-item p { margin: 0; padding: 0 1.2rem 1.1rem; color: var(--sc-ink-soft); font-size: 0.88rem; line-height: 1.6; }
+
+/* ---------- ACT 7 : démarrage + footer ---------- */
+#demarrer .sc-stage { display: flex; flex-direction: column; }
+.boot { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4.5rem 1.2rem 2rem; }
+.boot__status { font-family: var(--sc-font-mono); font-size: 0.7rem; letter-spacing: 0.18em; color: var(--sc-accent); text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+.boot__status .led { width: 8px; height: 8px; border-radius: 50%; background: var(--sc-accent); box-shadow: 0 0 10px var(--sc-accent); animation: ledPulse 1.8s ease-in-out infinite; }
+.boot h2 { max-width: 18ch; margin: 0 auto 1rem; }
+.boot .boot-sub { color: var(--sc-ink-soft); max-width: 52ch; margin: 0 auto 1.8rem; font-size: 0.95rem; }
+.boot__form { display: flex; gap: 0.6rem; width: min(460px, 100%); }
+.boot__form input {
+  flex: 1; min-width: 0; padding: 0.8rem 1.1rem; font-size: 0.95rem; color: var(--sc-ink);
+  background: color-mix(in oklab, var(--sc-canvas) 70%, transparent);
+  border: 1px solid var(--sc-hairline-strong); border-radius: var(--sc-r-pill);
+  transition: border-color 150ms, box-shadow 150ms;
+}
+.boot__form input::placeholder { color: var(--sc-ink-soft); }
+.boot__form input:focus { outline: none; border-color: var(--sc-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--sc-accent) 22%, transparent); }
+.boot__alt { margin-top: 0.9rem; font-size: 0.82rem; color: var(--sc-ink-soft); }
+.boot__alt a { color: var(--sc-accent); text-decoration: none; }
+.boot__alt a:hover { text-decoration: underline; }
+.boot__fine { font-family: var(--sc-font-mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--sc-ink-soft); text-transform: uppercase; margin-top: 1.6rem; }
+.boot__fine a { color: var(--sc-ink-soft); }
+.foot { border-top: 1px solid var(--sc-hairline); padding: 1.4rem clamp(1.1rem, 4vw, 3rem) 1.2rem; }
+.foot__inner { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+.foot__mark { display: flex; align-items: center; gap: 0.5rem; font-family: var(--sc-font-display); font-weight: 700; font-size: 1.05rem; }
+.foot__mark svg { width: 22px; height: 22px; }
+.foot__mark span { color: var(--sc-accent); }
+.foot__links { display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: 0.8rem; }
+.foot__links a { color: var(--sc-ink-soft); text-decoration: none; }
+.foot__links a:hover { color: var(--sc-accent); }
+.foot__legal { margin-left: auto; font-family: var(--sc-font-mono); font-size: 0.66rem; color: var(--sc-ink-soft); text-align: right; }
+.foot__legal a { color: var(--sc-ink-soft); }
+
+/* ---------- reduced motion : tout éteindre proprement ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ambient, .ambient * { animation: none !important; }
+  #flux-particles { display: none; }
+  .cursor, .cursor * { display: none !important; }
+  .machbar__status .led, .queue__led, .console__led, .led--amber, .recover__led, .boot__status .led { animation: none !important; }
+  #machine .trace { stroke-dashoffset: 0 !important; }
+  #machine .node, #machine .pulse { opacity: 1 !important; }
+  #machine .pulse { display: none; }
+  #ascenseur .lift__car { transform: translateX(-50%) translateY(-306%) !important; }
+  #ascenseur { --g: clamp(0, (var(--sc-p) - 0.78) * 12, 1); }
+  .lift-guarantee__burst { transform: none; }
+  .task-row, .task-row .t-led, .task-row .t-state--wait, .task-row .t-state--done { transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- mobile 860px ---------- */
+@media (max-width: 860px) {
+  .machbar__nav { display: none; }
+  .machbar__toggle { display: block; }
+  .machbar__status { display: none; }
+  .hero-section { padding-top: clamp(4.6rem, 9vh, 6rem); padding-bottom: 2.4rem; }
+  .hero-h { font-size: var(--sc-t-2xl); }
+  .hero-sub { font-size: 0.9rem; margin-bottom: 0.9rem; }
+  .console { padding: 1rem; }
+  .console__bar { margin-bottom: 0.8rem; }
+  .queue__row { padding: 0.42rem 0.7rem; }
+  .queue__name { font-size: 0.84rem; }
+  .cost { padding: 0.6rem 0.8rem; margin-bottom: 1rem; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .machine-stage { grid-template-columns: 1fr; gap: 1rem; padding: 4.6rem 1rem 3.2rem; align-content: center; }
+  .circuit { max-height: 30vh; }
+  .machine-copy { padding-top: 3.4rem; }
+  .machine-copy h2 { font-size: var(--sc-t-xl); }
+  .task-row { padding: 0.45rem 0.6rem; }
+  .task-row .t-name { font-size: 0.78rem; }
+  .task-row .t-hours { font-size: 0.62rem; }
+  .machine-readout { bottom: 0.8rem; }
+  .rail { padding-inline: 1rem; }
+  .rail__lead { width: 78vw; }
+  .case-card { width: 76vw; }
+  .testis { grid-template-columns: 1fr; }
+  .offer-row { grid-template-columns: 1fr auto; gap: 0.8rem; }
+  .offer-row .or-price { text-align: left; }
+  .offer-row .or-cta { grid-column: 1 / -1; text-align: center; }
+  .faq-list { grid-template-columns: 1fr; }
+  .lift-stage { grid-template-columns: 1fr; gap: 1rem; padding: 4.4rem 1rem 2.6rem; }
+  .lift-copy { text-align: center; }
+  .lift-copy h2 { font-size: var(--sc-t-2xl); }
+  .lift-copy .lift-lede, .lift-copy .lift-note { margin-inline: auto; }
+  .lift { height: clamp(300px, 52vh, 420px); }
+  .lift__floor { left: 50%; transform: translateX(-50%); width: min(78vw, 300px); z-index: 2; }
+  .lift__floor-body { text-align: center; }
+  .lift__floor-body p { display: none; }
+  .lift__floor-num { margin: 0 auto; }
+  .lift__car { z-index: 1; }
+  .lift__readout { display: none; }
+  .lift-guarantee { width: 94%; }
+  .lift-guarantee__panel { padding: 1.3rem 1.1rem; }
+  .lift-guarantee h3 { font-size: 1.15rem; }
+  .recover { left: 0.7rem; bottom: 0.7rem; width: auto; padding: 0.55rem 0.7rem; }
+  .recover__num b { font-size: 1.3rem; }
+  .recover__head { margin-bottom: 0.15rem; }
+  .recover__label { font-size: 0.52rem; }
+  .recover__sub { display: none; }
+  .recover__week, .recover__chips { display: none; }
+  .boot h2 { font-size: var(--sc-t-2xl); }
+  .boot__form { flex-direction: column; }
+  .foot__inner { flex-direction: column; align-items: flex-start; }
+  .foot__legal { margin-left: 0; text-align: left; }
+}
+@media (max-width: 480px) {
+  .hero-h { font-size: 1.62rem; }
+  .queue__hours { display: none; }
+  .queue__row { padding: 0.36rem 0.6rem; }
+  .queue__name { font-size: 0.8rem; }
+  .cost__calc { display: none; }
+  .trust { font-size: 0.74rem; margin-bottom: 1.1rem; }
+}
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap nav">
-    <a class="logo" href="index.html">Agent<span>ia</span></a>
-    <button class="nav-toggle" data-nav-toggle aria-label="Ouvrir le menu">☰</button>
-    <nav class="nav-links" data-nav>
-      <a href="index.html">Accueil</a>
-      <a href="services.html">Offres &amp; tarifs</a>
-      <a href="processus.html">Processus</a>
-      <a href="securite.html">Sécurité</a>
-      <a href="contact.html">Contact</a>
-      <a class="btn accent small" href="audit.html">Audit gratuit</a>
-    </nav>
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<!-- ambience : couches décoratives (jamais pilotées par l'engine) -->
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__grid"></div>
+  <div class="ambient__orb ambient__orb--1"></div>
+  <div class="ambient__orb ambient__orb--2"></div>
+</div>
+<canvas id="flux-particles" aria-hidden="true"></canvas>
+
+<!-- curseur custom -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="dot"></span>
+  <span class="ring"></span>
+  <span class="tr" style="left:14px;top:6px"></span>
+  <span class="tr" style="left:24px;top:18px"></span>
+  <span class="tr" style="left:10px;top:26px"></span>
+</div>
+
+<!-- LA SIGNATURE : le récupérateur d'heures -->
+<aside class="recover" id="recover" data-sc-verify-state="h0:w0:c0:g0" aria-label="Récupérateur d'heures : heures récupérées au fil du scroll">
+  <div class="recover__head">
+    <span class="recover__led" id="r-led"></span>
+    <span class="recover__label">Récupérateur d'heures</span>
+  </div>
+  <div class="recover__num"><b id="r-num">0</b><span class="recover__unit">h/sem</span></div>
+  <div class="recover__sub" id="r-sub">cas mesurés cités sur cette page</div>
+  <div class="recover__chips" id="r-chips"></div>
+  <div class="recover__week" id="r-week" aria-hidden="true">
+    <span data-day="0">LUN</span><span data-day="1">MAR</span><span data-day="2">MER</span><span data-day="3">JEU</span><span data-day="4">VEN</span>
+  </div>
+</aside>
+
+<!-- APP CHROME : la barre de la machine -->
+<header class="machbar">
+  <a class="machbar__mark" href="#top" aria-label="Agentia, retour en haut">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 22 L8 12 L16 12 L16 20 L24 20" fill="none" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="12" r="3" fill="#00ff88"/></svg>
+    <b>Agent<span>ia</span></b>
+  </a>
+  <span class="machbar__status"><span class="led"></span>Machine en ligne</span>
+  <nav class="machbar__nav" aria-label="Navigation">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Offres &amp; tarifs</a>
+    <a href="processus.html">Processus</a>
+    <a href="securite.html">Sécurité</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a class="machbar__cta" href="audit.html">Audit gratuit</a>
+  <button class="machbar__toggle" id="navtoggle" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+  <div class="machbar__drop" id="navdrop">
+    <a href="services.html">Offres &amp; tarifs</a>
+    <a href="processus.html">Processus</a>
+    <a href="securite.html">Sécurité</a>
+    <a href="contact.html">Contact</a>
+    <a href="audit.html" style="color:var(--sc-accent)">Audit gratuit</a>
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <span class="kicker">Agence de déploiement IA pour PME · audit gratuit</span>
-    <h1 class="reveal">Récupérez 5 à 10 h de travail<br>par semaine, <em>sans embaucher.</em></h1>
-    <p class="sub">On installe des automatisations qui font le travail à votre place — chatbot 24/7, devis, factures, relances, WhatsApp. Vous récupérez des heures réelles, mesurées avant / après. Pas de promesses : des chiffres.</p>
-    <div class="hero-cta">
-      <a class="btn accent" href="audit.html">Réserver mon audit gratuit (30 min)</a>
-      <a class="btn ghost" href="services.html">Voir les offres &amp; tarifs</a>
-    </div>
-    <p class="trust"><b>Garantie 30 jours</b> : ajusté gratuitement jusqu'à ce que ça vous fasse gagner du temps · <b>Données jamais revendues</b> · <b>Sécurité incluse</b> dans chaque déploiement · Audit sans engagement</p>
-    <div class="stats">
-      <div class="stat"><div class="big">5-10 h</div><div class="lbl">gagnées / semaine par automatisation installée</div></div>
-      <div class="stat"><div class="big">1-2 sem.</div><div class="lbl">de déploiement, formation d'équipe incluse</div></div>
-      <div class="stat"><div class="big">300-600 €</div><div class="lbl">/ mois : le Concierge IA, tout inclus</div></div>
-      <div class="stat"><div class="big">100 %</div><div class="lbl">des chantiers commencent par un audit gratuit</div></div>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<section class="alt" id="probleme">
-  <div class="wrap split">
-    <div>
-      <span class="kicker">Le problème</span>
-      <h2>Chaque semaine, des heures de travail s'évaporent en tâches répétitives.</h2>
-      <p class="lead">Saisir des factures, relancer les impayés, répondre 50 fois à la même question, gérer les réservations : c'est du temps que personne ne vous paie — et que vos concurrents les plus rapides ont déjà automatisé.</p>
-      <ul>
-        <li><b>Les grands cabinets vous ignorent</b> — ils vendent aux grands comptes, pas aux PME comme la vôtre.</li>
-        <li><b>Les solutions « tout-en-un » ne collent pas</b> — calibrées pour les grands groupes, jamais pour votre métier.</li>
-        <li><b>Les outils existent, pas l'installation</b> — 50-100 €/mois suffisent, mais il faut quelqu'un qui les branche, les teste et les maintienne pour vous.</li>
-      </ul>
-    </div>
-    <div class="result-card">
-      <div class="big">5-10 h/sem</div>
-      <div class="lbl">par automatisation installée — c'est le chiffre qu'on vous montre avant, pendant et après le chantier.</div>
-      <p class="small muted">Exemple : 5 h/semaine × 4,33 semaines × 30 €/h ≈ <b>650 €/mois</b> de valeur récupérée, pour un abonnement Concierge à 300-600 €/mois. ROI positif dès le premier mois.</p>
-    </div>
-  </div>
-</section>
-
-<section id="services">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Services</span>
-      <h2>Trois façons de travailler avec nous.</h2>
-      <p class="lead">Chaque offre commence par le même audit gratuit de 30 minutes.</p>
-      <p class="mt-2"><a class="pill" href="services.html#site-mvp">🆕 Nouveau : site vitrine ou MVP clé en main dès 500 € →</a></p>
-    </div>
-    <div class="cards">
-      <div class="card reveal"">
-        <div class="num">01</div>
-        <h3>Chatbot site web</h3>
-        <p>Votre site répond à vos clients 24/7 et prend les RDV pendant que vous dormez.</p>
-        <ul>
-          <li>Réponses basées sur VOS informations</li>
-          <li>Prise de RDV / réservation automatique</li>
-          <li>Escalade humaine si la question est complexe</li>
-        </ul>
-        <div class="price">800–1 500 €<small>+ 100–200 €/mois de maintenance</small></div>
-      </div>
-      <div class="card reveal"">
-        <div class="num">02</div>
-        <h3>Automatisations</h3>
-        <p>Devis, factures, relances, emails, documents : les tâches répétitives tournent toutes seules.</p>
-        <ul>
-          <li>Devis → facture → relance, sans intervention</li>
-          <li>Extraction de factures PDF</li>
-          <li>Relance paniers abandonnés, reporting, avis Google</li>
-        </ul>
-        <div class="price">1 500–3 000 €<small>par projet (1-3 workflows)</small></div>
-      </div>
-      <div class="card reveal"">
-        <div class="num">03</div>
-        <h3>Concierge IA</h3>
-        <p>Un abonnement mensuel : on maintient, on mesure, on ajoute des automatisations chaque mois.</p>
-        <ul>
-          <li>3-5 nouvelles automatisations / mois</li>
-          <li>Support &amp; maintenance illimités</li>
-          <li>Agent WhatsApp inclus</li>
-        </ul>
-        <div class="price">300–600 €<small>/ mois, sans engagement</small></div>
+  <!-- ============ ACT 1 · FLOW : LE MATIN ============ -->
+  <section id="probleme" class="sc-section hero-section" data-sc-act="flow">
+    <div class="sc-wrap">
+      <div class="console" data-sc-in>
+        <div class="console__bar">
+          <span class="console__led led--amber"></span>
+          <span class="console__title">Journée type · PME · 08:12</span>
+          <span class="console__status">Surcharge</span>
+        </div>
+        <p class="console__problem">Chaque semaine, des heures de travail <b>s'évaporent</b> en tâches répétitives.</p>
+        <h1 class="sc-display sc-display--xl hero-h">Récupérez 5 à 10 h de travail par semaine, <em>sans embaucher.</em></h1>
+        <p class="hero-sub">On installe des automatisations qui font le travail à votre place : chatbot 24/7, devis, factures, relances, WhatsApp. Vous récupérez des heures réelles, mesurées avant / après. Pas de promesses : des chiffres.</p>
+        <div class="queue" data-sc-stagger="55">
+          <div class="queue__row"><span class="queue__led"></span><span class="queue__name">Réponse aux emails entrants (tri + brouillons)</span><span class="queue__hours">3-5 h/sem</span></div>
+          <div class="queue__row"><span class="queue__led"></span><span class="queue__name">Devis → facture → relance (cycle complet)</span><span class="queue__hours">4-6 h/sem</span></div>
+          <div class="queue__row"><span class="queue__led"></span><span class="queue__name">Relance automatique des impayés</span><span class="queue__hours">2-3 h/sem</span></div>
+          <div class="queue__row"><span class="queue__led"></span><span class="queue__name">Chatbot site web : réponses + prise de RDV</span><span class="queue__hours">5-10 h/sem</span></div>
+          <div class="queue__row"><span class="queue__led"></span><span class="queue__name">Extraction factures PDF → comptabilité</span><span class="queue__hours">5-6 h/sem</span></div>
+        </div>
+        <div class="cost" data-sc-in>
+          <span class="cost__label">Pendant ce temps, le coût monte</span>
+          <b class="cost__num" data-sc-count="0 650" data-sc-count-at="0.26 0.62">0</b>
+          <span class="cost__unit">€/mois</span>
+          <span class="cost__calc">5 h/sem × 4,33 semaines × 30 €/h ≈ 650 €/mois qui s'évaporent, pour un abonnement à 300-600 €/mois. ROI positif dès le premier mois.</span>
+        </div>
+        <div class="hero-cta" data-sc-in>
+          <a class="btn btn--accent" href="audit.html">Réserver mon audit gratuit (30 min)</a>
+          <a class="btn btn--ghost" href="services.html">Voir les offres &amp; tarifs</a>
+        </div>
+        <p class="trust" data-sc-in><b>Garantie 30 jours</b> : ajusté gratuitement jusqu'à ce que ça vous fasse gagner du temps · <b>Données jamais revendues</b> · <b>Sécurité incluse</b> dans chaque déploiement · Audit sans engagement</p>
+        <div class="stats" data-sc-in data-sc-stagger="60">
+          <div class="stat"><div class="big">5-10 h</div><div class="lbl">gagnées / semaine par automatisation installée</div></div>
+          <div class="stat"><div class="big">1-2 sem.</div><div class="lbl">de déploiement, formation d'équipe incluse</div></div>
+          <div class="stat"><div class="big">300-600 €</div><div class="lbl">/ mois : le Concierge IA, tout inclus</div></div>
+          <div class="stat"><div class="big">100 %</div><div class="lbl">des chantiers commencent par un audit gratuit</div></div>
+        </div>
+        <div class="processus" id="processus" data-sc-in>
+          <span class="processus__k">Processus</span>
+          <span class="processus__step"><b>1.</b> Audit gratuit · 30 min</span><span class="processus__arrow">→</span>
+          <span class="processus__step"><b>2.</b> Démo sur vos données</span><span class="processus__arrow">→</span>
+          <span class="processus__step"><b>3.</b> Déploiement · 1-2 sem.</span><span class="processus__arrow">→</span>
+          <span class="processus__step"><b>4.</b> Concierge · on maintient</span>
+        </div>
       </div>
     </div>
-    <p class="pricing-foot"><a href="services.html">Voir le détail des offres, le catalogue des 10 automatisations et le simulateur de ROI →</a></p>
-  </div>
-</section>
+  </section>
 
-<section class="alt" id="exemples">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Cas concrets</span>
-      <h2>Ce que ça change, en vrai.</h2>
-      <p class="lead">Chaque ligne est un chantier déjà réalisable dès le premier mois.</p>
+  <!-- ============ ACT 2 · PIN : LA MACHINE PREND LA MAIN ============ -->
+  <section id="machine" data-sc-act="pin" data-sc-span="2.2" data-sc-drift="#04130c">
+    <div data-sc-stage class="machine-stage" id="machine-stage" data-sc-verify-state="c0:f0">
+      <div class="machine-copy">
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0.05 0.62 0.12 0.12">L'IA les prend <span class="turn">une par une.</span></h2>
+        <p class="machine-sub" data-sc-cue="0.42 0.98 0.1 0.12">Vos heures reviennent.</p>
+      </div>
+      <div class="circuit" aria-hidden="true">
+        <svg viewBox="0 0 400 240" role="img" aria-label="Circuit d'automatisation">
+          <path class="trace trace--t1" pathLength="1" d="M20 200 H140 V120 H260 V60 H380" />
+          <path class="trace trace--t2" pathLength="1" d="M20 60 H100 V120 H160" />
+          <path class="trace trace--t3" pathLength="1" d="M260 200 H340 V160 H380" />
+          <path class="trace trace--t4" pathLength="1" d="M140 40 V120" />
+          <circle class="node node--n1" cx="20" cy="200" r="5" />
+          <circle class="node node--n2" cx="140" cy="120" r="5" />
+          <circle class="node node--n3" cx="260" cy="60" r="5" />
+          <circle class="node node--n4" cx="380" cy="60" r="5" />
+          <circle class="pulse pulse--p1" r="4" />
+          <circle class="pulse pulse--p2" r="4" />
+        </svg>
+      </div>
+      <div class="tasks">
+        <div class="task-row"><span class="t-led"></span><span class="t-name">Réponse aux emails entrants</span><span class="t-hours">3-5 h/sem</span><span class="t-state t-state--wait">En attente</span><span class="t-state t-state--done">Automatisé</span></div>
+        <div class="task-row"><span class="t-led"></span><span class="t-name">Devis → facture → relance</span><span class="t-hours">4-6 h/sem</span><span class="t-state t-state--wait">En attente</span><span class="t-state t-state--done">Automatisé</span></div>
+        <div class="task-row"><span class="t-led"></span><span class="t-name">Relance des impayés</span><span class="t-hours">2-3 h/sem</span><span class="t-state t-state--wait">En attente</span><span class="t-state t-state--done">Automatisé</span></div>
+        <div class="task-row"><span class="t-led"></span><span class="t-name">Chatbot : réponses + RDV</span><span class="t-hours">5-10 h/sem</span><span class="t-state t-state--wait">En attente</span><span class="t-state t-state--done">Automatisé</span></div>
+        <div class="task-row"><span class="t-led"></span><span class="t-name">Extraction factures PDF</span><span class="t-hours">5-6 h/sem</span><span class="t-state t-state--wait">En attente</span><span class="t-state t-state--done">Automatisé</span></div>
+      </div>
+      <p class="machine-readout">5-10 h/sem récupérées par automatisation</p>
     </div>
-    <div class="ex-grid">
-      <div class="ex"><div><div class="t">Comptable</div><div class="s">Saisie automatique des factures PDF</div></div><div class="g">6 h/sem</div></div>
-      <div class="ex"><div><div class="t">Restaurant</div><div class="s">Réservations WhatsApp + relance des no-shows</div></div><div class="g">4 h/sem</div></div>
-      <div class="ex"><div><div class="t">E-commerçant</div><div class="s">Service client 24/7 + paniers abandonnés relancés</div></div><div class="g">8 h/sem</div></div>
-      <div class="ex"><div><div class="t">Clinique</div><div class="s">Prise de RDV 24/7 + rappels automatiques</div></div><div class="g">-25 % RDV manqués</div></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="processus">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Processus</span>
-      <h2>Zéro jargon, quatre étapes.</h2>
-      <p class="lead">Vous saurez exactement quoi, quand, et combien ça vous rapporte.</p>
-    </div>
-    <div class="steps">
-      <div class="step"><h3>Audit gratuit</h3><p>30 min pour identifier les 3 tâches qui vous coûtent le plus cher.</p></div>
-      <div class="step"><h3>Démo sur vos données</h3><p>Vous voyez l'automatisation fonctionner AVANT de payer.</p></div>
-      <div class="step"><h3>Déploiement</h3><p>1-2 semaines. Installation, tests, formation de votre équipe (30 min).</p></div>
-      <div class="step"><h3>Concierge</h3><p>On maintient, on mesure, on ajoute. Vous, vous gérez votre business.</p></div>
-    </div>
-    <p class="pricing-foot"><a href="processus.html">Découvrir le processus en détail →</a></p>
-  </div>
-</section>
-
-<section class="dark" id="ascenseur">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">L'effet ascenseur</span>
-      <h2>Le parcours qui transforme un audit en abonnement.</h2>
-      <p class="lead">On ne vend pas « un chatbot » : on entre par la porte la plus utile, on prouve la valeur, puis on passe en revenu récurrent.</p>
-    </div>
-    <div class="funnel">
-      <div class="fstep">
-        <div class="fnum">Étape 1</div>
-        <h3>Audit IA gratuit</h3>
-        <p>30 min. On identifie les 3 tâches qui vous coûtent le plus de temps et on chiffre les heures récupérables.</p>
-        <span class="fprix">0 €</span>
-      </div>
-      <div class="fstep">
-        <div class="fnum">Étape 2</div>
-        <h3>Entretien client IA</h3>
-        <p>Un assistant vocal interroge vos clients pour vous : satisfaction, points faibles, NPS. Vous obtenez un rapport exploitable — et le prétexte parfait pour rappeler chaque client.</p>
-        <span class="fprix">990 €</span>
-      </div>
-      <div class="fstep">
-        <div class="fnum">Étape 3</div>
-        <h3>Concierge IA</h3>
-        <p>Une fois la confiance installée, on automatise ce que l'entretien a révélé — puis chaque mois, de nouvelles automatisations.</p>
-        <span class="fprix">300–600 € / mois</span>
-      </div>
-    </div>
-    <p class="center mt-3" style="color:#a9b4ab;max-width:640px;margin-left:auto;margin-right:auto;font-size:15px">Le constat terrain : un client qui commence par un entretien client IA finit souvent en abonnement <b>2 mois plus tard</b>. C'est l'effet ascenseur — chaque prestation pousse vers la suivante.</p>
-    <p class="center mt-2"><a class="btn light" href="audit.html">Commencer par l'audit gratuit</a></p>
-  </div>
-</section>
-
-<section id="tarifs">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Tarifs</span>
-      <h2>Le prix d'un mi-temps, le coût d'un abonnement.</h2>
-      <p class="lead">50 % au lancement, 50 % à la livraison. Audit gratuit avant tout devis.</p>
-    </div>
-    <div class="plans">
-      <div class="plan">
-        <h3>Chatbot site web</h3>
-        <div class="price">800–1 500 €</div>
-        <div class="per">+ 100–200 €/mois de maintenance</div>
-        <ul>
-          <li>Chatbot 24/7 sur votre site</li>
-          <li>Prise de RDV automatique</li>
-          <li>Formation équipe incluse</li>
-        </ul>
-        <a class="btn ghost" href="audit.html">Demander un audit</a>
-      </div>
-      <div class="plan featured">
-        <span class="ribbon">Le plus demandé</span>
-        <h3>Automatisation</h3>
-        <div class="price">1 500–3 000 €</div>
-        <div class="per">par projet (1-3 workflows)</div>
-        <ul>
-          <li>Devis, factures, relances, emails</li>
-          <li>Résultats mesurés avant / après</li>
-          <li>Formation équipe incluse</li>
-        </ul>
-        <a class="btn accent" href="audit.html">Demander un audit</a>
-      </div>
-      <div class="plan">
-        <h3>Concierge IA</h3>
-        <div class="price">300–600 €</div>
-        <div class="per">par mois, sans engagement</div>
-        <ul>
-          <li>3-5 nouvelles automatisations / mois</li>
-          <li>Support &amp; maintenance illimités</li>
-          <li>Votre entreprise s'améliore en continu</li>
-        </ul>
-        <a class="btn ghost" href="audit.html">Demander un audit</a>
+  <!-- ============ ACT 3 · PAN : LES CAS MESURÉS ============ -->
+  <section id="exemples" data-sc-act="pan" data-sc-span="2.4" data-sc-drift="#07130d">
+    <div data-sc-stage>
+      <div class="rail" data-sc-pan="0.5">
+        <div class="rail__lead" data-sc-in data-sc-stagger="70">
+          <span class="kicker">Cas concrets</span>
+          <h2 class="sc-display sc-display--lg">Ce que ça change, en vrai.</h2>
+          <p>Chaque ligne est un chantier déjà réalisable dès le premier mois.</p>
+          <p class="rail-note">Résultats mesurés avant / après, sur les données du client</p>
+        </div>
+        <article class="case-card" data-sc-in data-sc-stagger="70">
+          <div class="cc" data-sc-tilt="5">
+            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h5M8 16h3"/></svg></div>
+            <h3>Comptable</h3>
+            <p class="cc-task">Saisie automatique des factures PDF</p>
+            <div class="cc-gain">6 h/sem<small>Temps récupéré</small></div>
+          </div>
+        </article>
+        <article class="case-card" data-sc-in data-sc-stagger="70">
+          <div class="cc" data-sc-tilt="5">
+            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M6 6l1.5 13a2 2 0 0 0 2 1.8h5a2 2 0 0 0 2-1.8L18 6"/><path d="M10 11v6M14 11v6"/></svg></div>
+            <h3>Restaurant</h3>
+            <p class="cc-task">Réservations WhatsApp + relance des no-shows</p>
+            <div class="cc-gain">4 h/sem<small>Temps récupéré</small></div>
+          </div>
+        </article>
+        <article class="case-card" data-sc-in data-sc-stagger="70">
+          <div class="cc" data-sc-tilt="5">
+            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.2l2.2-8H6.2"/></svg></div>
+            <h3>E-commerçant</h3>
+            <p class="cc-task">Service client 24/7 + paniers abandonnés relancés</p>
+            <div class="cc-gain">8 h/sem<small>Temps récupéré</small></div>
+          </div>
+        </article>
+        <article class="case-card" data-sc-in data-sc-stagger="70">
+          <div class="cc" data-sc-tilt="5">
+            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+            <h3>Clinique</h3>
+            <p class="cc-task">Prise de RDV 24/7 + rappels automatiques</p>
+            <div class="cc-gain">-25 % RDV manqués<small>Résultat mesuré</small></div>
+          </div>
+        </article>
       </div>
     </div>
-    <p class="pricing-foot">ROI typique : 500-800 € de valeur générée par mois pour 300-600 € d'abonnement — <b>positif dès le premier mois</b>.</p>
-  </div>
-</section>
+  </section>
 
-<section class="alt" id="temoignages">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Preuve sociale</span>
-      <h2>Ils ont récupéré leur semaine.</h2>
-      <p class="lead">Résultats typiques de chantiers Agentia.</p>
-    </div>
-    <div class="testis">
-      <div class="testi">
-        <div class="stars">★★★★★</div>
-        <p class="quote">« Le chatbot prend les réservations même la nuit et relance les no-shows tout seul. On a récupéré environ 6 heures par semaine en salle. »</p>
-        <div class="who">Sophie M.</div>
-        <div class="role">Gérante de restaurant, Lyon</div>
+  <!-- ============ ACT 4 · FLOW : LE CATALOGUE + PREUVES ============ -->
+  <section id="services" class="sc-section offres" data-sc-act="flow">
+    <div class="sc-wrap">
+      <div class="sec-head">
+        <span class="kicker" data-sc-cue="0.04 0.8 0.1 0.14">Services</span>
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0.08 0.88 0.1 0.14">Trois façons de travailler avec nous.</h2>
+        <p class="lead" data-sc-cue="0.16 0.92 0.1 0.14">Chaque offre commence par le même audit gratuit de 30 minutes.</p>
+        <p style="margin:0.9rem 0 0"><a class="nouveau" href="services.html#site-mvp"><span class="tag">Nouveau</span> Site vitrine ou MVP clé en main dès 500 € →</a></p>
       </div>
-      <div class="testi">
-        <div class="stars">★★★★★</div>
-        <p class="quote">« Les paniers abandonnés sont relancés automatiquement : +12 % de commandes récupérées en deux mois. L'agent WhatsApp répond à la place de mon équipe. »</p>
-        <div class="who">Karim B.</div>
-        <div class="role">E-commerçant, Bordeaux</div>
+      <div class="offer-rows" data-sc-in data-sc-stagger="80" id="tarifs">
+        <a class="offer-row" href="audit.html">
+          <div><div class="or-name">Chatbot site web</div><div class="or-desc">Votre site répond à vos clients 24/7 et prend les RDV pendant que vous dormez.</div></div>
+          <div class="or-price"><b>800-1 500 €</b><small>+ 100-200 €/mois de maintenance</small></div>
+          <span class="or-cta">Demander un audit</span>
+        </a>
+        <a class="offer-row" href="audit.html">
+          <div><div class="or-name">Automatisations</div><div class="or-desc">Devis, factures, relances, emails, documents : les tâches répétitives tournent toutes seules.</div></div>
+          <div class="or-price"><b>1 500-3 000 €</b><small>par projet (1-3 workflows)</small></div>
+          <span class="or-cta">Demander un audit</span>
+        </a>
+        <a class="offer-row" href="audit.html">
+          <div><div class="or-name">Concierge IA</div><div class="or-desc">Un abonnement mensuel : on maintient, on mesure, on ajoute des automatisations chaque mois.</div></div>
+          <div class="or-price"><b>300-600 €</b><small>/ mois, sans engagement</small></div>
+          <span class="or-cta">Demander un audit</span>
+        </a>
       </div>
-      <div class="testi">
-        <div class="stars">★★★★★</div>
-        <p class="quote">« Moins de rendez-vous manqués (-25 %), les rappels partent tout seuls. Mes secrétaires respirent, et les patients trouvent ça moderne. »</p>
-        <div class="who">Dr Laurent P.</div>
-        <div class="role">Médecin, Nantes</div>
+      <p class="roi-line" data-sc-in>ROI typique : 500-800 € de valeur générée par mois pour 300-600 € d'abonnement. <b>Positif dès le premier mois.</b></p>
+      <div class="preuves" id="temoignages" data-sc-in>
+        <span class="kicker">Résultats mesurés</span>
+        <h2 class="sc-display sc-display--md">Ce que ça change, en chiffres.</h2>
+        <p class="lead">Résultats typiques de chantiers Agentia, mesurés avant / après, sur les données du client.</p>
+        <div class="testis" data-sc-stagger="90">
+          <div class="testi"><p class="q">Chatbot réservations 24/7 + relance des no-shows : <b>≈ 6 h/semaine récupérées</b> en salle, moins de tables vides le soir.</p><div class="who">Cas type · Restaurant, Lyon</div></div>
+          <div class="testi"><p class="q">Relance des paniers abandonnés + agent WhatsApp : <b>+12 % de commandes récupérées</b> en deux mois, sans embaucher.</p><div class="who">Cas type · E-commerce, Bordeaux</div></div>
+          <div class="testi"><p class="q">Prise de RDV 24/7 + rappels automatiques : <b>−25 % de rendez-vous manqués</b>, les secrétaires respirent.</p><div class="who">Cas type · Cabinet médical, Nantes</div></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="dark guarantee">
-  <div class="wrap">
-    <span class="kicker">Garantie</span>
-    <h2>Si l'automatisation ne vous fait pas gagner de temps, on ajuste gratuitement. Jusqu'à ce que ça marche.</h2>
-    <p>30 jours. Sans discussion. Nous vendons du temps gagné, pas des logiciels.</p>
-    <span class="pill">✓ Audit gratuit &nbsp;·&nbsp; ✓ Données jamais revendues &nbsp;·&nbsp; ✓ Formation incluse</span>
-  </div>
-</section>
+  <!-- ============ ACT 5 · PIN : L'ASCENSEUR (PIC) ============ -->
+  <section id="ascenseur" data-sc-act="pin" data-sc-span="3.3" data-sc-drift="#020d07">
+    <div data-sc-stage class="lift-stage" id="lift-stage" data-sc-verify-state="c0:f0:g0">
+      <div class="lift-copy">
+        <span class="kicker" data-sc-cue="0.03 0.45 0.1 0.12">L'effet ascenseur</span>
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0.05 0.55 0.1 0.12">Le parcours qui transforme un audit en abonnement.</h2>
+        <p class="lift-lede" data-sc-cue="0.18 0.68 0.1 0.14">On ne vend pas « un chatbot » : on entre par la porte la plus utile, on prouve la valeur, puis on passe en revenu récurrent.</p>
+        <p class="lift-note" data-sc-cue="0.42 0.92 0.1 0.14">Le constat terrain : un client qui commence par un entretien client IA finit souvent en abonnement 2 mois plus tard.</p>
+      </div>
+      <div class="lift" aria-hidden="true">
+        <div class="lift__readout">Étage<b data-sc-count="0 2" data-sc-count-at="0.08 0.9">0</b></div>
+        <div class="lift__shaft"></div>
+        <div class="lift__floor-tick lift__floor-tick--0"></div>
+        <div class="lift__floor-tick lift__floor-tick--1"></div>
+        <div class="lift__floor-tick lift__floor-tick--2"></div>
+        <div class="lift__car" id="lift-car">
+          <div class="cab"><b>Agentia</b></div>
+        </div>
+        <div class="lift__floor lift__floor--0">
+          <span class="lift__floor-num">RDC</span>
+          <div class="lift__floor-body"><h3>Audit IA gratuit</h3><p>30 min. On identifie les 3 tâches qui vous coûtent le plus cher.</p><span class="lift__floor-price">0 €</span></div>
+        </div>
+        <div class="lift__floor lift__floor--1">
+          <span class="lift__floor-num">ÉT. 1</span>
+          <div class="lift__floor-body"><h3>Entretien client IA</h3><p>Le rapport donne à chaque client une raison de revenir.</p><span class="lift__floor-price">990 €</span></div>
+        </div>
+        <div class="lift__floor lift__floor--2">
+          <span class="lift__floor-num">ÉT. 2</span>
+          <div class="lift__floor-body"><h3>Concierge IA</h3><p>Revenu récurrent : chaque mois, de nouvelles automatisations.</p><span class="lift__floor-price">300-600 € / mois</span></div>
+        </div>
+      </div>
+      <div class="lift-guarantee" id="lift-guarantee">
+        <div class="lift-guarantee__burst"></div>
+        <div class="lift-guarantee__panel">
+          <span class="lift-guarantee__tag">Garantie <b data-sc-count="0 30" data-sc-count-at="0.8 0.94">30</b> jours</span>
+          <h3>Si l'automatisation ne vous fait pas gagner de temps, on ajuste gratuitement. Jusqu'à ce que ça marche.</h3>
+          <p>30 jours. Sans discussion. Nous vendons du temps gagné, pas des logiciels.</p>
+          <div class="pill">✓ Audit gratuit &nbsp;·&nbsp; ✓ Données jamais revendues &nbsp;·&nbsp; ✓ Formation incluse</div>
+          <a class="btn btn--accent" href="audit.html">Commencer par l'audit gratuit</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="cta" id="faq">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">FAQ</span>
-      <h2>Les questions qu'on nous pose tout le temps.</h2>
+  <!-- ============ ACT 6 · FLOW : FAQ ============ -->
+  <section id="faq" class="sc-section faq" data-sc-act="flow">
+    <div class="sc-wrap">
+      <div class="sec-head">
+        <span class="kicker" data-sc-cue="0.04 0.8 0.1 0.14">FAQ</span>
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0.08 0.88 0.1 0.14">Les questions qu'on nous pose tout le temps.</h2>
+      </div>
+      <div class="faq-list" data-sc-in data-sc-stagger="60">
+        <details class="faq-item"><summary>Combien ça coûte, vraiment ?</summary><p>Chatbot site web : 800-1 500 € + 100-200 €/mois. Automatisation : 1 500-3 000 € par projet. Concierge IA : 300-600 €/mois, sans engagement. Paiement 50 % au lancement, 50 % à la livraison. Et l'audit de départ est gratuit.</p></details>
+        <details class="faq-item"><summary>Et si ça ne marche pas ?</summary><p>Garantie 30 jours : si l'automatisation ne vous fait pas gagner de temps, on ajuste gratuitement jusqu'à ce que ça marche. On ne facture que du temps réellement gagné.</p></details>
+        <details class="faq-item"><summary>Qu'est-ce qui se passe avec nos données ?</summary><p>Elles restent chez vous. On n'en revend rien, jamais, et c'est écrit noir sur blanc dans nos contrats. Le consentement de vos clients (RGPD) est géré proprement : un argument de confiance, pas une contrainte.</p></details>
+        <details class="faq-item"><summary>Je ne suis pas technicien. C'est un problème ?</summary><p>Aucun. On installe, on teste, on forme votre équipe en 30 minutes. Vous n'avez rien à installer ni à comprendre : vous voyez le résultat, en français, sans jargon.</p></details>
+        <details class="faq-item"><summary>Ça remplace mes employés ?</summary><p>Non. Ça enlève le répétitif (saisie, relances, rappels, questions identiques) pour que vos équipes fassent ce qu'elles savent faire : servir les clients et faire grandir l'entreprise.</p></details>
+        <details class="faq-item"><summary>Pourquoi l'audit est gratuit ?</summary><p>Parce qu'on préfère prouver avant de vendre. En 30 minutes on identifie les 3 tâches qui vous coûtent le plus cher. Si on ne peut rien automatiser chez vous, on vous le dit franchement : vous repartez avec la liste quand même.</p></details>
+      </div>
     </div>
-    <div class="faq">
-      <details>
-        <summary>Combien ça coûte, vraiment ?</summary>
-        <p>Chatbot site web : 800–1 500 € + 100–200 €/mois. Automatisation : 1 500–3 000 € par projet. Concierge IA : 300–600 €/mois, sans engagement. Paiement 50 % au lancement, 50 % à la livraison. Et l'audit de départ est gratuit.</p>
-      </details>
-      <details>
-        <summary>Et si ça ne marche pas ?</summary>
-        <p>Garantie 30 jours : si l'automatisation ne vous fait pas gagner de temps, on ajuste gratuitement jusqu'à ce que ça marche. On ne facture que du temps réellement gagné.</p>
-      </details>
-      <details>
-        <summary>Qu'est-ce qui se passe avec nos données ?</summary>
-        <p>Elles restent chez vous. On n'en revend rien, jamais, et c'est écrit noir sur blanc dans nos contrats. Le consentement de vos clients (RGPD) est géré proprement — c'est un argument de confiance, pas une contrainte.</p>
-      </details>
-      <details>
-        <summary>Je ne suis pas technicien. C'est un problème ?</summary>
-        <p>Aucun. On installe, on teste, on forme votre équipe en 30 minutes. Vous n'avez rien à installer ni à comprendre : vous voyez le résultat, en français, sans jargon.</p>
-      </details>
-      <details>
-        <summary>Ça remplace mes employés ?</summary>
-        <p>Non. Ça enlève le répétitif (saisie, relances, rappels, questions identiques) pour que vos équipes fassent ce qu'elles savent faire : servir les clients et faire grandir l'entreprise.</p>
-      </details>
-      <details>
-        <summary>Pourquoi l'audit est gratuit ?</summary>
-        <p>Parce qu'on préfère prouver avant de vendre. En 30 minutes on identifie les 3 tâches qui vous coûtent le plus cher. Si on ne peut rien automatiser chez vous, on vous le dit franchement — et vous repartez avec la liste quand même.</p>
-      </details>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="cta alt">
-  <div class="wrap">
-    <span class="kicker">On commence ?</span>
-    <h2>30 minutes pour savoir exactement ce que l'IA peut automatiser chez vous.</h2>
-    <p>L'audit est gratuit et sans engagement. Vous repartez avec une liste d'opportunités, quoi qu'il arrive.</p>
-    <a class="btn accent" href="audit.html">Réserver mon audit gratuit</a>
-    <p class="fine">Agentia · réponse sous 24 h · <a href="contact.html">agentiadeploiement@gmail.com</a></p>
-  </div>
-</section>
+  <!-- ============ ACT 7 · PIN : DÉMARRAGE ============ -->
+  <section id="demarrer" data-sc-act="pin" data-sc-span="1.1" data-sc-drift="#020d07">
+    <div data-sc-stage>
+      <div class="boot">
+        <p class="boot__status"><span class="led"></span>Système prêt · Prochaine étape : l'audit</p>
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0.05" data-sc-rise="0">30 minutes pour savoir exactement ce que l'IA peut automatiser chez vous.</h2>
+        <p class="boot-sub" data-sc-cue="0.1" data-sc-rise="0">L'audit est gratuit et sans engagement. Vous repartez avec une liste d'opportunités, quoi qu'il arrive.</p>
+        <form class="boot__form" id="boot-form" data-sc-cue="0.16" data-sc-rise="0">
+          <label for="boot-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Votre email</label>
+          <input type="email" id="boot-email" name="email" placeholder="votre@email.fr" required autocomplete="email">
+          <button type="submit" class="btn btn--accent">Lancer l'audit gratuit</button>
+        </form>
+        <p class="boot__alt" data-sc-cue="0.22" data-sc-rise="0">ou <a href="audit.html">réserver via le formulaire →</a></p>
+        <p class="boot__fine" data-sc-cue="0.28" data-sc-rise="0">Agentia · réponse sous 24 h · <a href="mailto:agentiadeploiement@gmail.com">agentiadeploiement@gmail.com</a></p>
+      </div>
+      <footer class="foot">
+        <div class="foot__inner">
+          <span class="foot__mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 22 L8 12 L16 12 L16 20 L24 20" fill="none" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="12" r="3" fill="#00ff88"/></svg>Agent<span>ia</span></span>
+          <nav class="foot__links" aria-label="Pied de page">
+            <a href="services.html">Offres &amp; tarifs</a>
+            <a href="processus.html">Processus</a>
+            <a href="securite.html">Sécurité</a>
+            <a href="contact.html">Contact</a>
+            <a href="pieges.html">Carte des 5 pièges</a>
+          </nav>
+          <span class="foot__legal">© <span data-year>2026</span> Agentia · Demba Koita-Laha<br>L'IA au travail dans votre entreprise.</span>
+        </div>
+      </footer>
+    </div>
+  </section>
 
-<footer class="site-footer">
-  <div class="wrap foot">
-    <div>
-      <div class="logo light">Agent<span>ia</span></div>
-      <p class="muted small mt-1">L'IA au travail dans votre entreprise. Restaurants, cafés, e-commerçants et PME — on installe, on mesure, on maintient.</p>
-    </div>
-    <div>
-      <h4>Navigation</h4>
-      <a href="index.html">Accueil</a>
-      <a href="services.html">Offres &amp; tarifs</a>
-      <a href="processus.html">Processus</a>
-      <a href="securite.html">Sécurité</a>
-      <a href="audit.html">Audit gratuit</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <a href="mailto:agentiadeploiement@gmail.com">agentiadeploiement@gmail.com</a>
-      <a href="audit.html">Réserver un audit</a>
-      <p class="small muted mt-1">RGPD : vos données restent chez vous. Jamais revendues.</p>
-    </div>
-  </div>
-  <div class="wrap legal">
-    <span>© <span data-year>2026</span> Agentia — Demba Koita-Laha</span>
-    <span>Ressource gratuite : <a href="pieges.html" style="color:#7d887f">carte des 5 pièges</a></span>
-  </div>
-</footer>
+</main>
 
-<script src="js/tarifs.js"></script>
-<script src="js/main.js"></script>
+<noscript><style>[data-sc-cue],[data-sc-in],[data-sc-stagger]>*{opacity:1!important;transform:none!important}</style></noscript>
+
+<script src="scrollcraft.js"></script>
+<script>ScrollCraft.mount(document.body);</script>
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- helpers ---------- */
+  function $(id) { return document.getElementById(id); }
+  function pOf(el) {
+    var v = parseFloat(el.style.getPropertyValue("--sc-p"));
+    return isNaN(v) ? 0 : Math.max(0, Math.min(1, v));
+  }
+
+  /* ============================================================
+     LA SIGNATURE : le récupérateur d'heures.
+     Un panneau fixe qui compte les heures réellement citées
+     (cas mesurés) et allume la semaine au fil des actes.
+     Lit le --sc-p publié par l'engine sur chaque acte.
+     ============================================================ */
+  var recover = $("recover");
+  var rLed = $("r-led"), rNum = $("r-num"), rSub = $("r-sub"), rChips = $("r-chips");
+  var week = Array.prototype.slice.call(document.querySelectorAll("#r-week span"));
+  var acts = {
+    machine: $("machine"), exemples: $("exemples"), offres: $("services"),
+    ascenseur: $("ascenseur"), demarrer: $("demarrer")
+  };
+  var CHIPS = [
+    { act: "exemples", at: 0.3,  label: "Comptable", h: 6 },
+    { act: "exemples", at: 0.55, label: "Restaurant", h: 4 },
+    { act: "exemples", at: 0.8,  label: "E-commerçant", h: 8 },
+    { act: "ascenseur", at: 0.24, label: "Clinique", h: 0, badge: "-25 % RDV manqués" }
+  ];
+  var WEEK_MAP = [
+    { act: "machine", at: 0.3 }, { act: "exemples", at: 0.25 },
+    { act: "offres", at: 0.3 }, { act: "ascenseur", at: 0.35 }, { act: "demarrer", at: 0.3 }
+  ];
+  var added = {}, litW = {}, target = 0, cur = 0, guaranteeOn = false;
+
+  function fmt(n) { return Math.round(n); }
+  function appendChip(c) {
+    var el = document.createElement("span");
+    el.className = "recover__chip";
+    el.textContent = c.badge ? c.label + " " + c.badge : c.label + " +" + c.h + " h";
+    rChips.appendChild(el);
+    if (c.h) target += c.h;
+  }
+
+  function tickRecover() {
+    var hours = 0;
+    var weekLit = 0;
+    CHIPS.forEach(function (c) {
+      var act = acts[c.act];
+      if (!act) return;
+      if (pOf(act) > c.at && !added[c.label]) { added[c.label] = true; appendChip(c); }
+    });
+    WEEK_MAP.forEach(function (w, i) {
+      var act = acts[w.act];
+      if (act && pOf(act) > w.at && !litW[i]) { litW[i] = true; }
+      if (litW[i]) { week[i].classList.add("lit"); weekLit++; }
+    });
+    var g = pOf(acts.ascenseur);
+    if (g > 0.82 && !guaranteeOn) { guaranteeOn = true; rLed.classList.add("lit"); rSub.textContent = "Garantie 30 jours : on ajuste gratuitement."; }
+    if (g > 0.82 && weekLit < 5) { /* keep */ }
+    // compteur : lerp doux vers la cible
+    cur += (target - cur) * 0.12;
+    if (Math.abs(target - cur) < 0.3) cur = target;
+    rNum.textContent = fmt(cur);
+    var litN = Object.keys(litW).length;
+    recover.setAttribute("data-sc-verify-state",
+      "h" + fmt(cur) + ":w" + litN + ":c" + Object.keys(added).length + ":g" + (guaranteeOn ? 1 : 0));
+  }
+
+  /* ============================================================
+     États custom publiés au harness (dead-scroll vérifié)
+     ============================================================ */
+  var machineStage = $("machine-stage");
+  var liftStage = $("lift-stage");
+  function tickStates() {
+    var mp = pOf(acts.machine);
+    var flips = 0;
+    if (mp > 0.16) flips++; if (mp > 0.3) flips++; if (mp > 0.44) flips++; if (mp > 0.58) flips++; if (mp > 0.72) flips++;
+    machineStage.setAttribute("data-sc-verify-state", "c" + Math.round(mp * 100) + ":f" + flips);
+    var ap = pOf(acts.ascenseur);
+    var floors = 0;
+    if (ap > 0.3) floors++; if (ap > 0.52) floors++; if (ap > 0.74) floors++;
+    liftStage.setAttribute("data-sc-verify-state", "c" + Math.round(Math.min(ap, 0.8) * 100) + ":f" + floors + ":g" + (ap > 0.8 ? 1 : 0));
+  }
+
+  /* ============================================================
+     Particules : le flux qui monte (canvas léger)
+     ============================================================ */
+  var canvas = $("flux-particles");
+  var ctx = canvas && canvas.getContext("2d");
+  var parts = [];
+  function initParts() {
+    if (!ctx || reduce) return;
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener("resize", resize);
+    var N = window.innerWidth < 700 ? 12 : 22;
+    for (var i = 0; i < N; i++) {
+      parts.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: 0.8 + Math.random() * 1.8,
+        s: 0.12 + Math.random() * 0.35,
+        a: 0.06 + Math.random() * 0.16
+      });
+    }
+    var running = true;
+    function draw() {
+      if (!running) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var j = 0; j < parts.length; j++) {
+        var p = parts[j];
+        p.y -= p.s;
+        p.x += Math.sin((p.y + p.x) * 0.01) * 0.15;
+        if (p.y < -8) { p.y = canvas.height + 8; p.x = Math.random() * canvas.width; }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0,255,136," + p.a + ")";
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) running = false; else { running = true; requestAnimationFrame(draw); }
+    });
+  }
+  if (!reduce) initParts();
+
+  /* ============================================================
+     Curseur custom (gated pointer fin)
+     ============================================================ */
+  var cursor = $("cursor");
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (cursor && fine && !reduce) {
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    var trs = Array.prototype.slice.call(cursor.querySelectorAll(".tr"));
+    var trPos = trs.map(function () { return { x: 0, y: 0 }; });
+    var seen = false;
+    document.addEventListener("mousemove", function (e) {
+      mx = e.clientX; my = e.clientY;
+      if (!seen) { seen = true; cursor.classList.add("on"); rx = mx; ry = my; trPos.forEach(function (p) { p.x = mx; p.y = my; }); }
+    }, { passive: true });
+    document.addEventListener("mouseleave", function () { seen = false; cursor.classList.remove("on"); });
+    (function loop() {
+      rx += (mx - rx) * 0.28; ry += (my - ry) * 0.28;
+      var prev = { x: rx, y: ry };
+      for (var i = 0; i < trPos.length; i++) {
+        var p = trPos[i];
+        p.x += (prev.x - p.x) * 0.2; p.y += (prev.y - p.y) * 0.2;
+        trs[i].style.transform = "translate(" + (p.x - 1.5) + "px," + (p.y - 1.5) + "px)";
+        prev = p;
+      }
+      cursor.style.transform = "translate(" + rx + "px," + ry + "px)";
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ============================================================
+     Menu mobile
+     ============================================================ */
+  var navtoggle = $("navtoggle"), navdrop = $("navdrop");
+  if (navtoggle && navdrop) {
+    navtoggle.addEventListener("click", function () {
+      var open = navdrop.classList.toggle("open");
+      navtoggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", function (e) {
+      if (!navdrop.contains(e.target) && e.target !== navtoggle) navdrop.classList.remove("open");
+    });
+  }
+
+  /* ============================================================
+     Forme de démarrage : email réel, envoi via le client mail
+     (jamais d'envoi automatique), lien vers audit.html en secours.
+     ============================================================ */
+  var bootForm = $("boot-form");
+  if (bootForm) {
+    bootForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = ($("boot-email").value || "").trim();
+      var subject = "Audit gratuit 30 min - Agentia";
+      var body = "Bonjour Agentia,\n\nJe souhaite réserver mon audit gratuit de 30 minutes.\n\nMon email : " + email + "\n\nÀ bientôt.";
+      window.location.href = "mailto:agentiadeploiement@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    });
+  }
+
+  /* ============================================================
+     Boucle principale : récupérateur + états custom
+     ============================================================ */
+  function loop() { tickRecover(); tickStates(); requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+})();
+</script>
 
 
 <script>

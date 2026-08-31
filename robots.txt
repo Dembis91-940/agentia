@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Pages internes (cartes des pièges, etc.) : inutiles dans Google
+Disallow: /pieges.html
+
+Sitemap: https://dembis91-940.github.io/agentia/sitemap.xml
