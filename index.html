@@ -25,7 +25,7 @@
     "@type": "Offer",
     "price": "500",
     "priceCurrency": "EUR",
-    "description": "Site vitrine ou MVP clé en main dès 500 € ; chatbot 800-1 500 € ; automatisations 1 500-3 000 €/projet ; Concierge IA 300-600 €/mois."
+    "description": "Premier agent IA 3 000-5 000 € (offre d'entrée, formation incluse) ; site vitrine ou MVP clé en main dès 500 € ; chatbot 800-1 500 € ; automatisations 1 500-3 000 €/projet ; Concierge IA 300-600 €/mois."
   }
 }
 </script>
@@ -335,6 +335,40 @@ body { background: var(--sc-canvas); }
 .offer-row .or-cta:hover { background: color-mix(in oklab, var(--sc-accent) 10%, transparent); }
 .roi-line { font-size: 0.82rem; color: var(--sc-ink-soft); margin-top: 1.4rem; }
 .roi-line b { color: var(--sc-accent); }
+
+/* ---------- Offre d'entrée : Premier agent IA (ajout veille 03/09/2026) ---------- */
+.agent-entry {
+  border: 1px solid color-mix(in oklab, var(--sc-accent) 34%, transparent);
+  border-radius: var(--sc-r-lg);
+  background:
+    radial-gradient(480px 220px at 92% -10%, color-mix(in oklab, var(--sc-accent) 10%, transparent), transparent 62%),
+    linear-gradient(160deg, color-mix(in oklab, var(--sc-surface) 92%, var(--sc-accent) 3%) 0%, var(--sc-surface) 100%);
+  padding: clamp(1.3rem, 2.6vw, 2rem);
+  margin: 0 0 1.1rem;
+  box-shadow: var(--sc-e1), inset var(--sc-edge);
+}
+.agent-entry__grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: clamp(1.2rem, 3vw, 2.4rem); align-items: center; }
+.agent-entry__tag {
+  display: inline-block; font-family: var(--sc-font-mono); font-size: 0.62rem; letter-spacing: 0.16em;
+  color: var(--sc-accent-ink); background: linear-gradient(135deg, var(--sc-accent), var(--green-deep));
+  border-radius: var(--sc-r-pill); padding: 0.2rem 0.7rem; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+.agent-entry__name { font-family: var(--sc-font-display); font-size: 1.6rem; font-weight: 700; margin: 0 0 0.55rem; letter-spacing: -0.02em; }
+.agent-entry__desc { color: var(--sc-ink-soft); font-size: 0.92rem; line-height: 1.6; margin: 0; max-width: 62ch; }
+.agent-entry__list { list-style: none; margin: 1.1rem 0 0; padding: 0; display: grid; gap: 0.5rem 1.1rem; grid-template-columns: 1fr 1fr; }
+.agent-entry__list li { position: relative; padding-left: 1.4rem; font-size: 0.86rem; color: var(--sc-ink); line-height: 1.45; }
+.agent-entry__list li::before { content: ""; position: absolute; left: 0; top: 0.32em; width: 9px; height: 9px; border-radius: 50%; background: var(--sc-accent); box-shadow: 0 0 8px color-mix(in oklab, var(--sc-accent) 60%, transparent); }
+.agent-entry__side { border-left: 1px solid var(--sc-hairline); padding-left: clamp(1.2rem, 3vw, 2rem); }
+.agent-entry__price { font-family: var(--sc-font-mono); }
+.agent-entry__price b { font-size: 1.55rem; color: var(--sc-accent); font-weight: 700; letter-spacing: -0.02em; }
+.agent-entry__price small { display: block; font-size: 0.68rem; color: var(--sc-ink-soft); margin-top: 0.25rem; letter-spacing: 0.06em; }
+.agent-entry__side .btn { margin-top: 1.1rem; }
+.agent-entry__note { font-size: 0.72rem; color: var(--sc-ink-soft); line-height: 1.55; margin: 1rem 0 0; max-width: 40ch; }
+@media (max-width: 860px) {
+  .agent-entry__grid { grid-template-columns: 1fr; }
+  .agent-entry__side { border-left: 0; border-top: 1px solid var(--sc-hairline); padding-left: 0; padding-top: 1.1rem; }
+  .agent-entry__list { grid-template-columns: 1fr; }
+}
 .preuves { margin-top: 3.2rem; border-top: 1px dashed var(--sc-hairline); padding-top: 2.4rem; }
 .preuves .kicker { display: block; margin-bottom: 0.5rem; }
 .preuves h2 { margin: 0 0 0.6rem; }
@@ -738,10 +772,33 @@ details.faq-item p { margin: 0; padding: 0 1.2rem 1.1rem; color: var(--sc-ink-so
     <div class="sc-wrap">
       <div class="sec-head">
         <span class="kicker" data-sc-cue="0.04 0.8 0.1 0.14">Services</span>
-        <h2 class="sc-display sc-display--lg" data-sc-cue="0.08 0.88 0.1 0.14">Trois façons de travailler avec nous.</h2>
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0.08 0.88 0.1 0.14">Quatre façons de travailler avec nous.</h2>
         <p class="lead" data-sc-cue="0.16 0.92 0.1 0.14">Chaque offre commence par le même audit gratuit de 30 minutes.</p>
         <p style="margin:0.9rem 0 0"><a class="nouveau" href="services.html#site-mvp"><span class="tag">Nouveau</span> Site vitrine ou MVP clé en main dès 500 € →</a></p>
       </div>
+
+      <!-- Offre d'entrée : Premier agent IA (veille 03/09/2026 — INSEE 07/2026) -->
+      <div class="agent-entry" data-sc-in>
+        <div class="agent-entry__grid">
+          <div class="agent-entry__main">
+            <span class="agent-entry__tag">Offre d'entrée · Nouveau</span>
+            <h3 class="agent-entry__name">Premier agent IA</h3>
+            <p class="agent-entry__desc">Le pont entre la formation et l'action : on audite un processus réel de votre entreprise, on déploie un premier agent automatisé (avec un humain dans la boucle) et on forme votre équipe à le piloter. Le ticket du premier projet PME, calibré sur le marché français.</p>
+            <ul class="agent-entry__list">
+              <li>Audit du processus : cartographie des tâches + gains chiffrés</li>
+              <li>1 agent automatisé déployé et testé sur vos données</li>
+              <li>Formation de votre équipe incluse</li>
+              <li>Garantie 30 jours : on ajuste jusqu'au résultat</li>
+            </ul>
+          </div>
+          <div class="agent-entry__side">
+            <div class="agent-entry__price"><b>3 000-5 000 €</b><small>forfait projet · paiement 50/50</small></div>
+            <a class="btn btn--accent" href="audit.html">Réserver l'audit gratuit</a>
+            <p class="agent-entry__note">Les entreprises qui utilisent l'IA concentrent 66 % du CA et 59 % de l'emploi du champ marchand français. Premier projet PME type : 3 à 8 K€ (INSEE, 07/2026).</p>
+          </div>
+        </div>
+      </div>
+
       <div class="offer-rows" data-sc-in data-sc-stagger="80" id="tarifs">
         <a class="offer-row" href="audit.html">
           <div><div class="or-name">Chatbot site web</div><div class="or-desc">Votre site répond à vos clients 24/7 et prend les RDV pendant que vous dormez.</div></div>
@@ -825,7 +882,7 @@ details.faq-item p { margin: 0; padding: 0 1.2rem 1.1rem; color: var(--sc-ink-so
         <h2 class="sc-display sc-display--lg" data-sc-cue="0.08 0.88 0.1 0.14">Les questions qu'on nous pose tout le temps.</h2>
       </div>
       <div class="faq-list" data-sc-in data-sc-stagger="60">
-        <details class="faq-item"><summary>Combien ça coûte, vraiment ?</summary><p>Chatbot site web : 800-1 500 € + 100-200 €/mois. Automatisation : 1 500-3 000 € par projet. Concierge IA : 300-600 €/mois, sans engagement. Paiement 50 % au lancement, 50 % à la livraison. Et l'audit de départ est gratuit.</p></details>
+        <details class="faq-item"><summary>Combien ça coûte, vraiment ?</summary><p>Premier agent IA (offre d'entrée) : 3 000-5 000 €, audit du processus, 1 agent déployé et formation de l'équipe inclus. Chatbot site web : 800-1 500 € + 100-200 €/mois. Automatisation : 1 500-3 000 € par projet. Concierge IA : 300-600 €/mois, sans engagement. Paiement 50 % au lancement, 50 % à la livraison. Et l'audit de départ est gratuit.</p></details>
         <details class="faq-item"><summary>Et si ça ne marche pas ?</summary><p>Garantie 30 jours : si l'automatisation ne vous fait pas gagner de temps, on ajuste gratuitement jusqu'à ce que ça marche. On ne facture que du temps réellement gagné.</p></details>
         <details class="faq-item"><summary>Qu'est-ce qui se passe avec nos données ?</summary><p>Elles restent chez vous. On n'en revend rien, jamais, et c'est écrit noir sur blanc dans nos contrats. Le consentement de vos clients (RGPD) est géré proprement : un argument de confiance, pas une contrainte.</p></details>
         <details class="faq-item"><summary>Je ne suis pas technicien. C'est un problème ?</summary><p>Aucun. On installe, on teste, on forme votre équipe en 30 minutes. Vous n'avez rien à installer ni à comprendre : vous voyez le résultat, en français, sans jargon.</p></details>
