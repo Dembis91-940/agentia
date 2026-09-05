@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>10 automatisations IA pour votre PME — Agentia</title>
+<style>
+  /* ============================================================
+     LEAD MAGNET AGENTIA — « 10 automatisations IA avec prompts »
+     PDF A4 : guide clair, accent vert Agentia #00cc6a, blocs prompts sombres.
+     ============================================================ */
+  @page { size: A4; margin: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#12241b; background:#ffffff; }
+  .page { page-break-after: always; padding: 0; position: relative; }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---------- cover ---------- */
+  .cover { height: 297mm; background: #050b08; color:#eaf6ef; padding: 22mm 18mm; position:relative; overflow:hidden; }
+  .cover::after { content:""; position:absolute; width:150mm; height:150mm; border-radius:50%; background:radial-gradient(circle, rgba(0,255,136,.14), transparent 65%); top:-60mm; right:-60mm; }
+  .cover::before { content:""; position:absolute; width:120mm; height:120mm; border-radius:50%; background:radial-gradient(circle, rgba(0,255,136,.08), transparent 60%); bottom:-50mm; left:-40mm; }
+  .cmark { display:flex; align-items:center; gap:10px; font-size:13px; letter-spacing:.22em; text-transform:uppercase; font-weight:700; color:#00ff88; }
+  .cmark svg { width:22px; height:22px; }
+  .ctag { position:absolute; top:22mm; right:18mm; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#96b0a2; border:1px solid rgba(0,255,136,.4); border-radius:999px; padding:5px 12px; }
+  .cmain { position:relative; z-index:2; margin-top:58mm; }
+  .ch1 { font-size:37pt; line-height:1.06; font-weight:800; letter-spacing:-.02em; }
+  .ch1 span { color:#00ff88; }
+  .csub { margin-top:9mm; font-size:13.5pt; line-height:1.55; color:#a9c9b6; max-width:150mm; }
+  .cbullets { margin-top:10mm; display:flex; flex-direction:column; gap:3.5mm; }
+  .cbullet { display:flex; gap:4mm; align-items:flex-start; font-size:11.5pt; color:#eaf6ef; }
+  .cbullet b { color:#00ff88; }
+  .cfoot { position:absolute; bottom:18mm; left:18mm; right:18mm; z-index:2; display:flex; justify-content:space-between; font-size:9.5pt; color:#96b0a2; border-top:1px solid rgba(150,176,162,.25); padding-top:4mm; }
+
+  /* ---------- content pages ---------- */
+  .content { padding: 13mm 14mm 15mm 14mm; position:relative; }
+  .headerline { display:flex; justify-content:space-between; align-items:center; margin-bottom:5mm; border-bottom:1.5px solid #0b1510; padding-bottom:2.4mm; }
+  .headerline .brand { font-weight:800; font-size:12px; letter-spacing:.08em; color:#0b1510; }
+  .headerline .brand i { font-style:normal; color:#00a860; }
+  .headerline .pagelbl { font-size:9px; color:#5c7165; letter-spacing:.12em; text-transform:uppercase; }
+  h2.auto { font-size:16.5pt; font-weight:800; color:#0b1510; margin: 2.5mm 0 1.6mm; letter-spacing:-.015em; }
+  .numbadge { display:inline-flex; width:9.5mm; height:9.5mm; border-radius:50%; background:#00cc6a; color:#02130b; font-weight:800; font-size:13.5pt; align-items:center; justify-content:center; margin-right:3.4mm; vertical-align:middle; }
+  .kicker { font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:#00a860; font-weight:700; margin-top:3.5mm; }
+  .usecase { background:#f2f9f4; border-left:3px solid #00cc6a; padding:2.2mm 4mm; border-radius:0 6px 6px 0; margin-top:2.2mm; font-size:9.7pt; line-height:1.42; color:#1d3a29; }
+  .usecase b { color:#0b1510; }
+  .promptbox { margin-top:2.2mm; background:#0b1510; border-radius:8px; padding:2.6mm 4mm; }
+  .promptbox .plabel { color:#00ff88; font-size:8px; letter-spacing:.18em; text-transform:uppercase; font-weight:700; margin-bottom:1.4mm; }
+  .promptbox pre { font-family:'Courier New', Courier, monospace; font-size:8.1pt; line-height:1.42; color:#d9f5e5; white-space:pre-wrap; word-break:break-word; }
+  .toolchip { display:inline-block; margin-top:2.2mm; font-size:8.8pt; background:#e6f4ec; color:#0b6b3c; border-radius:999px; padding:1.2mm 3.4mm; font-weight:600; }
+  .toolchip b { font-weight:700; }
+  .sectiontitle { font-size:16pt; font-weight:800; color:#0b1510; margin:2mm 0 4mm; letter-spacing:-.01em; }
+  .intro-cols { display:flex; gap:6mm; }
+  .intro-col { flex:1; font-size:10pt; line-height:1.6; color:#1d3a29; }
+  .step { display:flex; gap:4mm; margin-top:2.5mm; }
+  .step .n { font-weight:800; color:#00a860; }
+  .howto li { margin:2mm 0 2mm 5mm; font-size:10pt; line-height:1.55; color:#1d3a29; }
+  .warn { margin-top:4mm; background:#fff7e8; border-left:3px solid #e8a020; padding:3mm 5mm; font-size:9.5pt; line-height:1.5; color:#5c4a17; border-radius:0 6px 6px 0; }
+  .footerline { position:absolute; bottom:10mm; left:16mm; right:16mm; display:flex; justify-content:space-between; font-size:8.5pt; color:#5c7165; border-top:1px solid #d7e4db; padding-top:2.5mm; }
+  .outro { background:#050b08; color:#eaf6ef; padding:18mm; page-break-after:auto; height:auto; min-height:180mm; border-radius:12px; }
+  .outro h2 { font-size:24pt; font-weight:800; letter-spacing:-.02em; }
+  .outro h2 span { color:#00ff88; }
+  .outro .oitem { display:flex; gap:5mm; margin-top:6mm; align-items:flex-start; background:rgba(255,255,255,.03); border:1px solid rgba(0,255,136,.18); border-radius:10px; padding:5mm 6mm; }
+  .oitem .num { font-size:14pt; font-weight:800; color:#00ff88; }
+  .oitem p { font-size:10.5pt; line-height:1.5; color:#c9dfd1; }
+  .oitem b { color:#ffffff; }
+  .ofoot { margin-top:10mm; font-size:9.5pt; color:#7fa38c; border-top:1px solid rgba(150,176,162,.2); padding-top:4mm; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1 : COUVERTURE ==================== -->
+<div class="page cover">
+  <div class="cmark">
+    <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#00ff88"/><path d="M8 22 L8 12 L16 12 L16 20 L24 20" stroke="#02130b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="12" r="3" fill="#02130b"/></svg>
+    AGENTIA
+  </div>
+  <div class="ctag">Guide gratuit · PME &amp; TPE</div>
+  <div class="cmain">
+    <div class="ch1">10 automatisations IA<br>pour votre PME —<br><span>avec les prompts prêts à copier</span></div>
+    <p class="csub">Relances impayés, avis Google, comptes-rendus, devis… Dix tâches répétitives qui vous volent des heures chaque semaine, et le prompt exact pour les confier à l'IA dès aujourd'hui.</p>
+    <div class="cbullets">
+      <div class="cbullet"><b>→</b> Chaque automatisation : le problème, le prompt, l'outil conseillé</div>
+      <div class="cbullet"><b>→</b> Prompts en français, copier-coller immédiat</div>
+      <div class="cbullet"><b>→</b> Gratuit, sans engagement — offert par Agentia</div>
+    </div>
+  </div>
+  <div class="cfoot">
+    <span>Agentia — L'IA au travail dans votre entreprise</span>
+    <span>agentiadeploiement@gmail.com</span>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2 : COMMENT UTILISER ==================== -->
+<div class="page content">
+  <div class="headerline">
+    <div class="brand">Agent<i>ia</i> — Guide gratuit</div>
+    <div class="pagelbl">Comment utiliser ce guide</div>
+  </div>
+  <h2 class="auto" style="font-size:19pt">Vos premières automatisations en 15 minutes</h2>
+  <p style="font-size:10.5pt;line-height:1.6;color:#1d3a29;margin-top:3mm">Ce guide ne parle pas de « révolutionner votre entreprise » — il parle de rendre 5 à 10 heures par semaine à votre équipe, une tâche à la fois. Chaque fiche est autonome : vous pouvez commencer par celle qui vous fait le plus mal aujourd'hui.</p>
+
+  <div class="kicker">Les 3 règles avant de commencer</div>
+  <div class="intro-cols" style="margin-top:2mm">
+    <div class="intro-col"><b style="color:#0b1510">1. Commencez petit, vraiment.</b><br>Choisissez UNE automatisation, pas dix. La plus pénible de votre semaine. Un résultat concret en 48 h vaut mieux qu'un grand plan en 3 mois.</div>
+    <div class="intro-col"><b style="color:#0b1510">2. Relisez toujours avant d'envoyer.</b><br>L'IA rédige, un humain valide. Les prompts de ce guide sont des brouillons de qualité professionnelle — jamais des envois automatiques sans contrôle.</div>
+  </div>
+  <div class="intro-cols" style="margin-top:2mm">
+    <div class="intro-col"><b style="color:#0b1510">3. Donnez le contexte, pas une injonction.</b><br>Un bon prompt = un rôle, un contexte, une tâche, un format. Exemple : « Tu es assistant commercial. Voici la facture impayée… Rédige une relance ferme mais courtoise, format email. »</div>
+    <div class="intro-col"><b style="color:#0b1510">Quel outil ?</b><br>Les prompts fonctionnent avec ChatGPT, Claude, Gemini ou Mistral. Pour les automatisations qui tournent seules (relances, avis, tri), il faut un « glue » type n8n, Make ou Zapier — ou un prestataire qui l'installe pour vous.</div>
+  </div>
+
+  <div class="warn"><b>RGPD — le réflexe qui vous protège.</b> Ne collez jamais de données clients identifiantes (noms, emails, numéros de facture) dans un outil grand public sans vérifier sa politique de données. Pour les données sensibles, utilisez un outil professionnel avec hébergement européen, ou faites-vous accompagner. C'est aussi ce que nous vérifions lors de nos audits.</div>
+
+  <div class="kicker" style="margin-top:6mm">Ce que vous allez automatiser</div>
+  <div style="display:flex;flex-wrap:wrap;gap:2.5mm;margin-top:3mm">
+    <span class="toolchip"><b>01</b> · Relance d'impayés</span>
+    <span class="toolchip"><b>02</b> · Réponses aux avis Google</span>
+    <span class="toolchip"><b>03</b> · Tri de la boîte mail</span>
+    <span class="toolchip"><b>04</b> · Compte-rendu de réunion</span>
+    <span class="toolchip"><b>05</b> · Devis &amp; propositions</span>
+    <span class="toolchip"><b>06</b> · Réponses client WhatsApp</span>
+    <span class="toolchip"><b>07</b> · Fiches produit e-commerce</span>
+    <span class="toolchip"><b>08</b> · Posts LinkedIn</span>
+    <span class="toolchip"><b>09</b> · Suivi de chantier &amp; planning</span>
+    <span class="toolchip"><b>10</b> · Factures &amp; comptabilité</span>
+  </div>
+  <div class="footerline"><span>Agentia — 10 automatisations IA avec prompts</span><span>2</span></div>
+</div>
+
+<!-- ==================== PAGE 3 : 01-02 ==================== -->
+<div class="page content">
+  <div class="headerline"><div class="brand">Agent<i>ia</i> — Guide gratuit</div><div class="pagelbl">Automatisations 01 · 02</div></div>
+
+  <h2 class="auto"><span class="numbadge">1</span>Relance des impayés</h2>
+  <div class="usecase"><b>Le problème :</b> une facture impayée à 30, 60 ou 90 jours coûte du temps et de l'inconfort. On remet à plus tard, on rédige un email trop sec ou trop mou, et le délai s'allonge encore.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es assistant commercial dans une PME française. Rédige une relance
+de facture impayée, ferme mais courtoise, qui préserve la relation client.
+
+Contexte à intégrer :
+- Montant : [montant] € TTC
+- Numéro de facture : [n°]
+- Date d'échéance : [date] — dépassée de [X] jours
+- Client : [nom / entreprise] (relation : [ancien / récent / important])
+- Relance n° : [1, 2 ou 3]  (la 3e doit mentionner une mise en demeure)
+
+Format : email prêt à envoyer, 5 phrases maximum, objet inclus, ton
+professionnel. Propose à la fin 2 options de régularisation (paiement
+immédiat ou échéancier).</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT / Claude / Mistral pour la rédaction · n8n / Make pour l'envoi programmé des relances</div>
+
+  <h2 class="auto" style="margin-top:5.5mm"><span class="numbadge">2</span>Réponse aux avis Google</h2>
+  <div class="usecase"><b>Le problème :</b> chaque avis Google sans réponse est une vitrine laissée vide — les futurs clients lisent vos réponses autant que vos notes. Mais répondre à 4 ou 5 étoiles comme aux critiques prend du temps et de la diplomatie.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es le responsable d'un [commerce / entreprise] : [type, ville].
+Réponds à cet avis Google laissé par un client.
+
+Avis (note [X]/5) : « [copier l'avis] »
+
+Consignes :
+- Ton chaleureux et professionnel, signature [prénom].
+- Si l'avis est positif : remerciez sincèrement, citez UN détail précis
+  de l'avis, invitez à revenir sans forcer.
+- Si l'avis est négatif : excusez-vous sans vous flageller, reconnaissez
+  le problème, expliquez la correction en cours, proposez de poursuivre
+  en privé (téléphone ou email).
+- 4 phrases maximum. Jamais de réponse type.</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT / Gemini pour la rédaction · n8n + API Google Business Profile pour la réponse automatique (avec validation humaine)</div>
+  <div class="footerline"><span>Agentia — 10 automatisations IA avec prompts</span><span>3</span></div></div>
+
+<!-- ==================== PAGE 4 : 03-04 ==================== -->
+<div class="page content">
+  <div class="headerline"><div class="brand">Agent<i>ia</i> — Guide gratuit</div><div class="pagelbl">Automatisations 03 · 04</div></div>
+
+  <h2 class="auto"><span class="numbadge">3</span>Tri de la boîte mail</h2>
+  <div class="usecase"><b>Le problème :</b> 80 emails par jour, et les trois qui demandent une action sont noyés sous les newsletters, les notifications et les factures. Le matin, vous perdez 20 minutes à trier au lieu d'agir.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es un assistant qui aide un chef d'entreprise à vider sa boîte mail
+en 10 minutes par jour.
+
+Voici le contenu d'emails reçus (sujet + extrait). Classe chacun dans
+UNE de ces catégories :
+- URGENT_ACTION : demande d'un client, problème, délai proche
+- A_TRAITER : demande sans urgence (devis, RDV, info)
+- LIRE : newsletter, information utile
+- ARCHIVER : notification, facture payée, sans action
+- SUPPRIMER : spam, pub non sollicitée
+
+Pour chaque email URGENT_ACTION ou A_TRAITER, propose une réponse
+de 2 phrases à envoyer. Sortie : liste propre, une ligne par email.</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT / Claude en copier-coller · n8n + Gmail API pour le tri automatique par libellés</div>
+
+  <h2 class="auto" style="margin-top:5.5mm"><span class="numbadge">4</span>Compte-rendu de réunion</h2>
+  <div class="usecase"><b>Le problème :</b> 1 h de réunion = 30 minutes de notes pour celui qui les rédige, et des décisions qui se perdent faute d'être écrites noir sur blanc.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es assistant de direction. Transforme la transcription de réunion
+ci-dessous en compte-rendu professionnel.
+
+Transcription : [coller la transcription ou les notes brutes]
+
+Structure attendue :
+1. Objet de la réunion + date + participants
+2. Décisions prises (liste, avec le responsable quand c'est dit)
+3. Actions à faire : tableau Action | Responsable | Échéance
+4. Points à trancher plus tard
+5. Sujets reportés
+
+Règles : garder uniquement ce qui est dit, ne rien inventer, reformuler
+de façon concise. S'il manque un responsable ou une échéance, écrire
+« à confirmer ».</pre></div>
+  <div class="toolchip"><b>Outil :</b> transcription Whisper / Vercel + ChatGPT · ou outil dédié (Fireflies, Meet transcript) + n8n pour envoyer le CR par email aux participants</div>
+  <div class="footerline"><span>Agentia — 10 automatisations IA avec prompts</span><span>4</span></div>
+</div>
+
+<!-- ==================== PAGE 5 : 05-06 ==================== -->
+<div class="page content">
+  <div class="headerline"><div class="brand">Agent<i>ia</i> — Guide gratuit</div><div class="pagelbl">Automatisations 05 · 06</div></div>
+
+  <h2 class="auto"><span class="numbadge">5</span>Devis &amp; propositions</h2>
+  <div class="usecase"><b>Le problème :</b> chaque demande de devis repart de zéro : reformuler la même offre, adapter le ton, oublier une option. Le devis part en 2 h au lieu de 20 minutes.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es commercial dans [activité : ex. entreprise de rénovation].
+Rédige un devis détaillé à partir des éléments suivants.
+
+Demande du client : [décrire le besoin, le lieu, les contraintes]
+Nos prestations et tarifs habituels : [liste des prestations + prix]
+Options possibles : [liste des options + prix]
+
+Consignes :
+- Structure : rappel du besoin, prestations détaillées avec prix,
+  total HT et TTC (TVA [X] %), délai d'intervention estimé,
+  conditions de paiement, validité de l'offre (30 jours).
+- Ton clair et professionnel, sans jargon.
+- À la fin, liste 3 questions à poser au client pour préciser le besoin.</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT / Claude pour la rédaction · n8n / Make pour générer le PDF de devis et l'envoyer automatiquement</div>
+
+  <h2 class="auto" style="margin-top:5.5mm"><span class="numbadge">6</span>Première réponse client WhatsApp</h2>
+  <div class="usecase"><b>Le problème :</b> un client écrit à 19 h, la réponse part à 10 h le lendemain. Parfois il est déjà allé voir ailleurs. Vous voulez répondre vite sans être collé au téléphone.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es l'assistant de [entreprise, activité, horaires d'ouverture].
+Rédige une réponse type de premier contact pour un message reçu sur
+WhatsApp.
+
+Message reçu : « [coller le message client] »
+
+Consignes :
+- Réponds à la question posée si l'information est connue (prix
+  indicatifs, disponibilité, délais, adresse, horaires).
+- Si tu ne sais pas : réponds chaleureusement, résume la demande,
+  et annonce qu'un humain reprend la main dans les délais annoncés
+  ([X] minutes / heures ouvrées).
+- Maximum 4 phrases. Propose une action simple (réserver, passer,
+  rappeler). Signe [prénom].</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT pour la rédaction des réponses types · agent WhatsApp (type Agentia) pour répondre 24 h/24 avec transfert humain</div>
+  <div class="footerline"><span>Agentia — 10 automatisations IA avec prompts</span><span>5</span></div>
+</div>
+
+<!-- ==================== PAGE 6 : 07-08 ==================== -->
+<div class="page content">
+  <div class="headerline"><div class="brand">Agent<i>ia</i> — Guide gratuit</div><div class="pagelbl">Automatisations 07 · 08</div></div>
+
+  <h2 class="auto"><span class="numbadge">7</span>Fiches produit e-commerce</h2>
+  <div class="usecase"><b>Le problème :</b> une boutique qui ajoute 20 produits par semaine passe des heures à écrire des descriptions qui ne vendent pas — ou pire, copie celles du fournisseur (pénalisé par Google).</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es rédacteur e-commerce spécialisé SEO. Rédige la fiche produit
+complète pour l'article suivant.
+
+Informations produit :
+- Nom : [nom du produit]
+- Caractéristiques techniques : [liste]
+- Usage / public visé : [description]
+- Prix : [prix] €
+- Boutique : [nom, style de la marque, ton : premium / décontracté…]
+
+Livrables :
+1. Titre produit (70 caractères max, avec le mot-clé principal)
+2. Description de 120-150 mots : bénéfices client d'abord,
+   caractéristiques ensuite, jamais de superlativité vide
+3. 5 puces argumentaires
+4. Meta description (155 caractères max)
+5. 3 variantes de titre pour tester</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT / Claude · en volume : n8n + API pour générer les fiches depuis votre fichier produits</div>
+
+  <h2 class="auto" style="margin-top:7mm"><span class="numbadge">8</span>Posts LinkedIn pour l'entreprise</h2>
+  <div class="usecase"><b>Le problème :</b> vous savez que vos clients sont sur LinkedIn, mais entre le chantier, la gestion et les urgences, poster tombe toujours en bas de la liste.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es consultant en personal branding pour un dirigeant de PME.
+Transforme l'anecdote ci-dessous en post LinkedIn qui construit la
+confiance et génère des prises de contact.
+
+Matière brute : [décrire un fait réel de la semaine : un projet réussi,
+une difficulté surmontée, une leçon, un chiffre, une question client]
+
+Consignes :
+- Accroche en 1ère ligne qui donne envie de lire (sans racolage).
+- Raconte le fait simplement, avec UN apprentissage actionnable.
+- Termine par une question ouverte pour lancer la discussion.
+- 120-180 mots, phrases courtes, ton d'un dirigeant qui partage
+  son expérience — pas d'un commercial qui vend.
+- Propose 3 titres d'accroche alternatifs.</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT / Claude pour le brouillon · vous publiez (jamais de publication automatique sans votre validation)</div>
+  <div class="footerline"><span>Agentia — 10 automatisations IA avec prompts</span><span>6</span></div>
+</div>
+
+<!-- ==================== PAGE 7 : 09-10 ==================== -->
+<div class="page content">
+  <div class="headerline"><div class="brand">Agent<i>ia</i> — Guide gratuit</div><div class="pagelbl">Automatisations 09 · 10</div></div>
+
+  <h2 class="auto"><span class="numbadge">9</span>Suivi de chantier &amp; planning</h2>
+  <div class="usecase"><b>Le problème :</b> « Où en est le dossier Martin ? » — la réponse exige d'ouvrir trois fichiers, un mail et un tableau. Le suivi d'avancement est chronophage et les retards se découvrent trop tard.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es chef de projet dans [secteur : BTP, services, agence…].
+À partir des notes ci-dessous, produis le point d'avancement du dossier.
+
+Notes brutes : [coller les notes, échanges, relevés]
+
+Livrables :
+1. Avancement global estimé en % avec 2 phrases d'explication
+2. Prochaines étapes (avec responsable et date)
+3. Alertes : tout élément qui peut déraper (retard, surcoût, attente
+   client, absence) — classé par gravité
+4. Message client à envoyer (format : 1 paragraphe, ton rassurant et
+   transparent, ne mentionne que les éléments confirmés)
+
+Règle : si une information manque pour estimer, dis-le clairement
+plutôt que d'inventer.</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT / Claude · en routine : n8n qui agrège les notes et pousse le point hebdo dans votre canal d'équipe</div>
+
+  <h2 class="auto" style="margin-top:7mm"><span class="numbadge">10</span>Factures &amp; comptabilité courante</h2>
+  <div class="usecase"><b>Le problème :</b> ressaisir une facture reçue, classer un justificatif, retrouver un montant pour l'expert-comptable : de petites tâches qui s'additionnent en heures perdues chaque mois.</div>
+  <div class="promptbox"><div class="plabel">Prompt prêt à copier</div><pre>Tu es assistant comptable. Extrais les informations de cette facture
+ou de ce justificatif (texte ou description de l'image fournie).
+
+Document : [coller le texte extrait de la facture, ou décrire le
+document scanné]
+
+Informations à extraire :
+- Fournisseur (nom, SIRET si présent)
+- Numéro de facture, date d'émission, date d'échéance
+- Montant HT, TVA, montant TTC
+- Lignes principales (désignation + montant)
+- Mode de paiement si indiqué
+
+Sortie : bloc structuré, prêt à coller dans un tableur ou un logiciel
+comptable. Si un champ est illisible ou absent, écris « non précisé ».
+Ne modifie JAMAIS un montant.</pre></div>
+  <div class="toolchip"><b>Outil :</b> ChatGPT / Claude avec photo ou PDF · outil dédié de capture (type scan + IA) branché sur votre compta</div>
+  <p style="font-size:9.5pt;color:#5c7165;margin-top:2.5mm"><b>Prudence :</b> pour la comptabilité, gardez toujours un humain qui valide. L'IA prépare, le logiciel comptable et l'expert valident.</p>
+  <div class="footerline"><span>Agentia — 10 automatisations IA avec prompts</span><span>7</span></div>
+</div>
+
+<!-- ==================== PAGE 8 : ET MAINTENANT ==================== -->
+<div class="page content" style="padding-bottom:6mm">
+  <div class="headerline"><div class="brand">Agent<i>ia</i> — Guide gratuit</div><div class="pagelbl">Et maintenant ?</div></div>
+  <h2 class="auto">Par où commencer demain matin</h2>
+  <div class="howto" style="margin-top:3mm">
+    <ul>
+      <li><b>1. Choisissez UNE automatisation</b> — celle de la fiche 1, 2 ou 6 selon votre métier (impayés, avis, WhatsApp).</li>
+      <li><b>2. Testez le prompt à la main</b> — collez-le dans ChatGPT ou l'outil de votre choix, avec un cas réel. Ajustez jusqu'à ce que le résultat soit bon.</li>
+      <li><b>3. Passez en « semi-auto »</b> — gardez la validation humaine : l'IA prépare, vous validez, l'envoi part.</li>
+      <li><b>4. Automatisez seulement ce qui est stable</b> — quand le texte vous convient 9 fois sur 10, branchez n8n, Make ou un agent dédié.</li>
+      <li><b>5. Mesurez le temps gagné</b> — notez les heures récupérées par semaine. C'est votre preuve pour décider la suite.</li>
+    </ul>
+  </div>
+  <div class="warn"><b>Le piège à éviter :</b> automatiser un process qui n'est pas clair. Si personne ne sait comment la relance doit sonner, l'IA ne le découvrira pas toute seule. D'abord le process, ensuite l'automatisation.</div>
+  <div class="sectiontitle" style="margin-top:7mm">Et si vous voulez aller plus loin ?</div>
+  <p style="font-size:10.5pt;line-height:1.6;color:#1d3a29">Ces 10 automatisations sont la partie visible de l'iceberg. Quand une PME veut vraiment récupérer 10 h par semaine, il faut regarder l'ensemble de ses tâches répétitives, choisir les bonnes priorités et installer des automatisations qui tournent seules — avec quelqu'un qui les maintient.</p>
+  <p style="font-size:10.5pt;line-height:1.6;color:#1d3a29;margin-top:3mm"><b style="color:#0b1510">C'est exactement ce que fait Agentia.</b> Audit gratuit de 30 minutes : on identifie les 3 tâches qui vous coûtent le plus cher, on chiffre les heures récupérables, et vous repartez avec la liste des opportunités — même si vous ne signez rien.</p>
+  <div style="margin-top:6mm;background:#e6f4ec;border-radius:10px;padding:4.5mm 6mm;display:flex;justify-content:space-between;align-items:center;gap:5mm">
+    <div style="font-size:11pt;color:#0b1510"><b>Audit IA gratuit de 30 min</b><br><span style="font-size:9.5pt;color:#1d3a29">Sans engagement. Vous repartez avec vos 3 opportunités chiffrées.</span></div>
+    <div style="text-align:right;font-size:9.5pt;color:#0b6b3c;font-weight:700;white-space:nowrap">agentia.services → Audit gratuit</div>
+  </div>
+  <div class="footerline" style="position:static;margin-top:4mm"><span>Agentia — 10 automatisations IA avec prompts</span><span>8</span></div>
+</div>
+
+<!-- ==================== DERNIÈRE PAGE : OUTRO ==================== -->
+<div class="page content" style="background:#050b08;color:#eaf6ef;padding:18mm 16mm">
+  <div class="headerline" style="border-bottom-color:rgba(0,255,136,.25)">
+    <div class="brand" style="color:#eaf6ef">Agent<i style="color:#00ff88">ia</i> — L'IA au travail dans votre entreprise</div>
+    <div class="pagelbl" style="color:#7fa38c">Offert par Agentia</div>
+  </div>
+  <h2 style="font-size:23pt;font-weight:800;letter-spacing:-.02em;color:#ffffff;margin-top:2mm">Ce guide est gratuit.<br><span style="color:#00ff88">La suite peut changer votre semaine.</span></h2>
+  <div class="oitem" style="margin-top:7mm">
+    <div class="num">1</div>
+    <p><b>L'audit gratuit (30 min).</b> On passe en revue vos tâches répétitives, on chiffre les heures récupérables et on vous propose 3 automatisations concrètes avec prix. Vous décidez ensuite, en toute connaissance.</p>
+  </div>
+  <div class="oitem">
+    <div class="num">2</div>
+    <p><b>Le Défi 30 jours IA.</b> Une cohorte pour automatiser UN process de votre business avec l'IA, avec un livrable concret chaque semaine. Pour les équipes qui veulent avancer accompagnées.</p>
+  </div>
+  <div class="oitem">
+    <div class="num">3</div>
+    <p><b>Les formations pratiques.</b> Des packs PDF denses et actionnables : LLM, agents IA, automatisation n8n, prompt engineering — écrits par un praticien, avec exercices et checklists.</p>
+  </div>
+  <div class="ofoot">
+    <span>Agentia — audit gratuit : agentiadeploiement@gmail.com</span>
+    <span>Guide « 10 automatisations IA avec prompts » · septembre 2026</span>
+  </div>
+</div>
+
+</body>
+</html>
