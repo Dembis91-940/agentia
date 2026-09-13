@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script async src="https://cloud.umami.is/script.js" data-website-id="e5abcaa5-b313-4845-a812-2038dceffb6d"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brancher un agent IA sur votre boîte mail : les 4 règles à exiger | Agentia</title>
+<meta name="description" content="Avant de laisser un agent IA lire ou écrire vos emails : les 4 règles à exiger de votre prestataire (permissions minimales, compte dédié, validation humaine, plan de sortie). Grille de permissions et checklist incluses.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://dembis91-940.github.io/agentia/agent-email-4-regles.html">
+<meta property="og:title" content="Brancher un agent IA sur votre boîte mail : les 4 règles à exiger">
+<meta property="og:description" content="Ce que votre prestataire doit vous garantir — et ce qui doit vous rester si vous arrêtez demain.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Article",
+ "headline":"Brancher un agent IA sur votre boîte mail : les 4 règles à exiger",
+ "about":"Sécurité et gouvernance d'un agent IA branché sur une boîte mail d'entreprise",
+ "inLanguage":"fr",
+ "author":{"@type":"Person","name":"Demba Koita Laha"},
+ "publisher":{"@type":"Organization","name":"Agentia"},
+ "url":"https://dembis91-940.github.io/agentia/agent-email-4-regles.html"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.w{max-width:920px;margin:0 auto;padding:0 22px}
+.hero-art{padding:56px 0 30px}
+.tag-loi{display:inline-block;background:rgba(0,255,136,.11);border:1px solid rgba(0,255,136,.36);color:var(--accent);font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;margin-bottom:22px}
+.hero-art h1{font-size:clamp(29px,4.4vw,50px);line-height:1.09;letter-spacing:-.025em;margin:0 0 18px}
+.hero-art p.chapeau{font-size:18.5px;line-height:1.65;color:var(--muted);max-width:740px}
+.regle{border:1px solid var(--line);border-radius:16px;padding:26px;margin:18px 0;background:rgba(255,255,255,.025)}
+.regle .num{font-family:var(--font);font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.regle h3{font-size:21px;margin:8px 0 12px;letter-spacing:-.015em}
+.regle p{font-size:16.5px;line-height:1.7;color:var(--muted);margin:0 0 12px}
+.regle p:last-child{margin-bottom:0}
+.regle .pourquoi{border-left:3px solid rgba(255,209,102,.5);padding-left:14px;font-size:15.5px;color:#d9e6dd}
+.perms{display:grid;gap:14px;margin:26px 0}
+.perm{border:1px solid var(--line);border-radius:14px;padding:20px 22px;background:rgba(255,255,255,.025);border-left:4px solid var(--line)}
+.perm h4{margin:0 0 12px;font-size:18px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.perm p{margin:0 0 8px;font-size:15.5px;line-height:1.6;color:var(--muted)}
+.perm p:last-child{margin-bottom:0}
+.perm strong{color:var(--ink)}
+.perm.p1{border-left-color:#ffd166}
+.perm.p2{border-left-color:var(--accent)}
+.perm.p3{border-left-color:#ff8a8a}
+.defaut{font-family:var(--font);font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);background:rgba(0,255,136,.13);border:1px solid rgba(0,255,136,.34);padding:3px 9px;border-radius:999px}
+.n1{color:#ffd166}.n2{color:var(--accent)}.n3{color:#ff8a8a}
+.sortie{background:linear-gradient(150deg,rgba(255,209,102,.09),rgba(255,209,102,.02));border:1px solid rgba(255,209,102,.34);border-radius:18px;padding:30px;margin:34px 0}
+.sortie h3{margin-top:0;color:#ffd166}
+.sortie ul{margin:14px 0 0;padding-left:20px;display:block}
+.sortie li{margin-bottom:11px;font-size:16px;line-height:1.65;color:var(--muted)}
+.cta-fin{background:linear-gradient(150deg,rgba(0,255,136,.09),rgba(0,255,136,.02));border:1px solid rgba(0,255,136,.32);border-radius:18px;padding:32px;margin:40px 0;text-align:center}
+.cta-fin p{color:var(--muted);font-size:16.5px;max-width:620px;margin:10px auto 22px;line-height:1.65}
+.btn{display:inline-block;background:var(--accent);color:#04160d;font-weight:700;font-size:16px;padding:15px 32px;border-radius:999px;text-decoration:none}
+h2.sec{font-size:clamp(22px,3vw,31px);letter-spacing:-.02em;margin:52px 0 14px}
+p.sec{color:var(--muted);font-size:17px;line-height:1.7}
+.ctrl-list{list-style:none;padding:0;margin:22px 0;display:block}
+.ctrl-list li{position:relative;padding-left:32px;margin-bottom:13px;font-size:16.5px;line-height:1.6;color:var(--muted)}
+.ctrl-list li::before{content:"☐";position:absolute;left:0;color:var(--accent);font-size:18px}
+.note{font-size:14px;color:var(--muted);margin-top:36px;padding-top:20px;border-top:1px solid var(--line);line-height:1.7}
+@media(max-width:640px){
+  /* un tableau à 3 colonnes déborde sur un écran de téléphone : on l'empile en cartes
+     au lieu de forcer un défilement latéral (défaut détecté par inspect_page.py) */
+  .w{padding:0 16px}
+  .regle,.sortie,.cta-fin{padding:20px}
+}
+@media(max-width:820px){
+  /* la barre de navigation (jusqu'à 7 liens) force le document à 489 px de large sur un
+     écran de 390 : elle doit pouvoir passer à la ligne, sinon toute la page défile
+     latéralement. Défaut commun aux pages du site, corrigé ici. */
+  .machbar__inner{flex-wrap:wrap;justify-content:center;padding:12px 16px;gap:10px}
+  .machbar__nav{flex-wrap:wrap;justify-content:center;gap:9px 15px;font-size:13.5px}
+  .w{max-width:100%}
+  body{overflow-x:hidden}
+}
+</style>
+</head>
+<body>
+
+<header class="machbar">
+  <div class="machbar__inner">
+    <a class="machbar__brand" href="index.html"><span class="logo">A<span class="logo-dot"></span>gentia</span></a>
+    <nav class="machbar__nav">
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Offres &amp; tarifs</a>
+      <a href="art50.html">Conformité IA</a>
+      <a href="art50-idf.html">Île-de-France</a>
+      <a href="agent-email-4-regles.html" style="color:var(--accent)">Agents &amp; email</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="w">
+
+  <section class="hero-art">
+    <span class="tag-loi">Guide pratique — avant de brancher un agent</span>
+    <h1>Un agent sur votre boîte mail.<br><span style="color:var(--accent)">Les 4 règles à exiger.</span></h1>
+    <p class="chapeau">Mettre une IA sur sa messagerie est devenu facile : une connexion OAuth, dix minutes, et elle lit tout. La question n'est pas de savoir si ça marche — <strong>c'est de savoir ce qu'elle peut faire sans vous, et ce qui reste le jour où vous arrêtez.</strong> Voici les quatre règles à réclamer à votre prestataire, et la grille de permissions pour les écrire noir sur blanc.</p>
+  </section>
+
+  <article>
+
+    <div class="regle">
+      <span class="num">Règle 1</span>
+      <h3>Lecture et brouillons — jamais l'envoi</h3>
+      <p>L'agent <strong>lit</strong> et <strong>prépare</strong>. Il ne parle pas au nom de l'entreprise. Concrètement : il identifie ce qui demande une action et dépose des brouillons prêts à partir. <strong>Un humain clique sur « envoyer ».</strong></p>
+      <p>Une exception encadrée existe : les envois internes à risque nul (accusés de réception, confirmations automatiques), après validation écrite dans le contrat — et jamais sur un message qui sort de l'entreprise.</p>
+      <p class="pourquoi"><strong>Pourquoi ce n'est pas négociable :</strong> un email parti ne se rattrape pas. Le coût d'une erreur est asymétrique — un brouillon en trop ne coûte rien, une réponse à un client qui part sans relecture peut coûter le client.</p>
+    </div>
+
+    <div class="regle">
+      <span class="num">Règle 2</span>
+      <h3>Un compte dédié, jamais votre boîte principale</h3>
+      <p>L'agent travaille sur une adresse créée pour lui (par exemple <em>assistant@votre-entreprise.fr</em>) — pas sur la vôtre.</p>
+      <p>Trois bénéfices concrets :</p>
+      <p><strong>Réversible</strong> — on supprime le compte, votre boîte n'a jamais été touchée. <strong>Traçable</strong> — tout ce qu'il a fait porte sa signature, vous pouvez l'auditer. <strong>Rassurant</strong> — vous gardez la main sur vos échanges personnels et confidentiels.</p>
+      <p class="pourquoi"><strong>Le test simple :</strong> demandez à voir de quel compte partent les messages. Si la réponse est « le vôtre », la règle 1 n'est pas tenable — l'agent peut écrire depuis votre identité.</p>
+    </div>
+
+    <div class="regle">
+      <span class="num">Règle 3</span>
+      <h3>Trois niveaux de permission, choisis tâche par tâche</h3>
+      <p>« L'agent a accès à mes mails » ne veut rien dire. Ce qui compte, c'est <em>ce qu'il a le droit de faire</em> sur chacun. Trois niveaux, et on choisit explicitement pour chaque tâche :</p>
+      <div class="perms">
+        <div class="perm p1">
+          <h4>Lecture seule</h4>
+          <p><strong>Qui décide :</strong> l'agent lit, il n'écrit rien.</p>
+          <p><strong>Pour quoi :</strong> tri de la boîte, veille, analyse, préparation de dossiers.</p>
+        </div>
+        <div class="perm p2">
+          <h4>Brouillon <span class="defaut">le défaut</span></h4>
+          <p><strong>Qui décide :</strong> l'agent prépare, vous validez.</p>
+          <p><strong>Pour quoi :</strong> emails clients, devis, réponses commerciales.</p>
+        </div>
+        <div class="perm p3">
+          <h4>Autonome</h4>
+          <p><strong>Qui décide :</strong> l'agent agit seul.</p>
+          <p><strong>Pour quoi :</strong> uniquement des tâches internes à risque nul, listées au contrat.</p>
+        </div>
+      </div>
+      <p class="pourquoi"><strong>La règle de conception :</strong> par défaut, brouillon. Le mode autonome s'ajoute tâche par tâche, après plusieurs semaines d'observation — et jamais sur une écriture qui sort de l'entreprise.</p>
+    </div>
+
+    <h2 class="sec">La règle 4 — celle que personne ne vous donnera</h2>
+    <p class="sec">Les trois premières protègent vos données pendant que l'agent tourne. La quatrième protège votre entreprise <strong>pour le jour où il s'arrête</strong> — le vôtre, ou le nôtre.</p>
+
+    <div class="sortie">
+      <h3>Prévoir la sortie : que reste-t-il si on débranche demain ?</h3>
+      <p style="color:var(--muted);font-size:16.5px;line-height:1.7">Avant de déployer, trois choses doivent être garanties par écrit :</p>
+      <ul>
+        <li><strong>Les données produites.</strong> Tous les documents, brouillons, rapports et analyses doivent être livrés dans des <strong>formats ouverts</strong>, dans un dossier qui vous appartient — pas seulement dans le tableau de bord d'un prestataire.</li>
+        <li><strong>Les journaux de ce qu'il a fait.</strong> Ce qui a tourné, ce qui a échoué, ce qui a été décidé. Sans cet historique, personne ne peut reprendre la suite.</li>
+        <li><strong>Les accès qu'il a créés.</strong> Un agent génère des clés API et des comptes de service. Exigez <strong>le registre</strong> : quelle clé, à quoi elle donne accès, où elle est stockée, comment on la révoque. Un agent qu'on débranche sans révoquer ses clés laisse des portes ouvertes.</li>
+      </ul>
+      <p style="margin-top:18px;color:#ffd166;font-weight:600">La question à poser en réunion, avant de commencer : « le jour où on arrête, qui reprend, et avec quoi ? » Si personne ne peut répondre, l'installation n'est pas finie.</p>
+    </div>
+
+    <h2 class="sec">La checklist à faire signer</h2>
+    <p class="sec">Sept points. Si votre prestataire les accepte, le projet est sain. S'il en évite un, creusez.</p>
+    <ul class="ctrl-list">
+      <li>Un <strong>compte dédié</strong> est créé pour l'agent — jamais la boîte principale</li>
+      <li>Le <strong>niveau de permission</strong> est défini tâche par tâche (lecture / brouillon / autonome)</li>
+      <li>Il est écrit que l'agent <strong>ne peut pas envoyer</strong> hors de l'entreprise sans validation humaine</li>
+      <li>Un <strong>registre des accès</strong> est ouvert dès le premier jour (clé, usage, stockage, révocation)</li>
+      <li>Les livrables sont déposés <strong>dans vos systèmes</strong>, en formats ouverts</li>
+      <li>La <strong>journalisation</strong> est active : on peut savoir ce qui a tourné et ce qui a échoué</li>
+      <li>Une <strong>procédure de sortie</strong> est écrite et validée de votre côté</li>
+    </ul>
+
+    <div class="cta-fin">
+      <h3 style="margin-top:0">Vous voulez vérifier où vous en êtes ?</h3>
+      <p>Un audit de vos accès et de vos automatisations en cours : je regarde ce qui est branché chez vous, qui peut écrire au nom de qui, et ce qu'il vous resterait si on débranchait demain. Vous repartez avec le constat et la liste des accès à révoquer ou à tracer — que vous fassiez le reste avec moi ou non.</p>
+      <a class="btn" href="contact.html">Demander l'audit de vos accès →</a>
+    </div>
+
+    <p class="note">
+      <strong>Qui écrit ceci :</strong> Demba Koita Laha, Agentia — j'installe des agents IA dans des PME et j'applique ces règles à mes propres systèmes. Ce document est ma méthode, pas une promesse commerciale : vous pouvez exiger les mêmes points d'un autre prestataire, et vous aurez raison de le faire.
+    </p>
+
+  </article>
+
+</main>
+
+</body>
+</html>
